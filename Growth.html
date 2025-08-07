@@ -1,0 +1,2271 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="description"
+      content="Tech Talk Solution Growth Strategy - Our roadmap for expansion and innovation in restaurant support services"
+    />
+    <meta
+      name="keywords"
+      content="growth strategy, restaurant support, expansion plan, innovation roadmap"
+    />
+    <meta name="author" content="Tech Talk Solution" />
+
+    <title>Growth Strategy | Tech Talk Solution</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
+
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <!-- ScrollReveal -->
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+
+    <!-- Vanta.js -->
+    <!-- Vanta.js removed due to CDN loading issues - using CSS animations instead -->
+
+    <!-- Lottie -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
+    <!-- Shery.js -->
+    <!-- Shery.js removed due to CDN loading issues - using CSS animations instead -->
+
+    <!-- Parallax.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Custom styles -->
+    <style>
+      /* Color theme matching techtalksolution.co.uk */
+      :root {
+        --primary-dark: #0a0e27; /* A deep, rich blue-black for better contrast */
+        --accent-red: #de232a; /* The vibrant red from user */
+        --accent-pink: #f19fac; /* The soft pink from user */
+        --text-light: #f5f5f5;
+        --text-muted: #b0bec5;
+      }
+
+      body {
+        background-image: linear-gradient(
+            rgba(26, 26, 46, 0.8),
+            rgba(15, 52, 96, 0.8)
+          ),
+          url("https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        color: #ffffff;
+        min-height: 100vh;
+        font-family: "Arial", sans-serif;
+      }
+
+      /* Fallback styles */
+      * {
+        box-sizing: border-box;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Custom animations */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .floating {
+        animation: float 4s ease-in-out infinite;
+      }
+
+      /* Gradient text */
+      .gradient-text {
+        background: linear-gradient(
+          90deg,
+          var(--accent-red),
+          var(--accent-pink)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Glassmorphism effect */
+      .glass {
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(222, 35, 42, 0.3);
+      }
+
+      /* Navbar specific styles - minimal overrides */
+      #navbar .nav-link {
+        color: white;
+        font-weight: 500;
+      }
+
+      #navbar .nav-link:hover {
+        color: #ef4444;
+      }
+
+      #navbar span {
+        color: white;
+      }
+
+      #navbar i {
+        color: white;
+      }
+
+      /* Mobile Responsive Styles */
+      /* Large tablets and small laptops */
+      @media (max-width: 1024px) {
+        .max-w-7xl {
+          padding: 0 20px;
+        }
+        
+        .grid {
+          gap: 30px !important;
+        }
+        
+        /* Image adjustments for large tablets */
+         .strategy-image {
+           height: 180px;
+           border-radius: 14px;
+           box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+         }
+         
+         .strategy-image::before {
+           border-radius: 14px;
+         }
+         
+         .strategy-image img {
+           border-radius: 14px;
+         }
+      }
+      
+      /* Tablets */
+      @media (max-width: 768px) {
+        body {
+          background-attachment: scroll;
+        }
+        
+        .hero-title {
+          font-size: 2.5rem !important;
+          line-height: 1.2;
+          text-align: center;
+        }
+        
+        .hero-subtitle {
+          font-size: 1.1rem !important;
+          text-align: center;
+        }
+        
+        .container, .max-w-7xl {
+          padding: 0 20px;
+        }
+        
+        section {
+          padding: 60px 0 !important;
+        }
+        
+        .glass {
+          margin: 0 10px;
+          padding: 25px !important;
+        }
+        
+        .strategy-card {
+          margin-bottom: 25px;
+        }
+        
+        .grid {
+          grid-template-columns: 1fr !important;
+          gap: 25px !important;
+        }
+        
+        .text-3xl, .text-4xl {
+          font-size: 2rem !important;
+        }
+        
+        .text-2xl {
+          font-size: 1.75rem !important;
+        }
+        
+        .text-xl {
+          font-size: 1.5rem !important;
+        }
+        
+        .space-y-6 > * + * {
+          margin-top: 1.5rem !important;
+        }
+        
+        /* Image adjustments for tablets */
+         .strategy-image {
+           height: 160px;
+           border-radius: 12px;
+           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+           margin-bottom: 14px;
+         }
+         
+         .strategy-image::before {
+           border-radius: 12px;
+         }
+         
+         .strategy-image img {
+           border-radius: 12px;
+         }
+      }
+      
+      /* Large phones */
+      @media (max-width: 640px) {
+        .hero-title {
+          font-size: 2rem !important;
+        }
+        
+        .hero-subtitle {
+          font-size: 1rem !important;
+        }
+        
+        .container, .max-w-7xl {
+          padding: 0 15px;
+        }
+        
+        /* Image adjustments for large phones */
+         .strategy-image {
+           height: 140px;
+           border-radius: 10px;
+           box-shadow: 0 3px 16px rgba(0, 0, 0, 0.18);
+           margin-bottom: 12px;
+         }
+         
+         .strategy-image::before {
+           border-radius: 10px;
+         }
+         
+         .strategy-image img {
+           border-radius: 10px;
+         }
+        
+        .glass {
+          margin: 0 8px;
+          padding: 20px !important;
+        }
+        
+        .text-3xl, .text-4xl {
+          font-size: 1.875rem !important;
+        }
+        
+        .text-2xl {
+          font-size: 1.5rem !important;
+        }
+        
+        .text-xl {
+          font-size: 1.25rem !important;
+        }
+        
+        .py-20 {
+          padding-top: 50px !important;
+          padding-bottom: 50px !important;
+        }
+        
+        .space-x-6, .lg\:space-x-8 {
+          gap: 1rem !important;
+        }
+      }
+      
+      /* Small phones */
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: 1.75rem !important;
+          margin-bottom: 1rem !important;
+        }
+        
+        .hero-subtitle {
+          font-size: 0.9rem !important;
+          margin-bottom: 1.5rem !important;
+        }
+        
+        .container, .max-w-7xl {
+          padding: 0 12px;
+        }
+        
+        .glass {
+          margin: 0 5px;
+          padding: 15px !important;
+        }
+        
+        .text-3xl, .text-4xl {
+          font-size: 1.5rem !important;
+        }
+        
+        .text-2xl {
+          font-size: 1.25rem !important;
+        }
+        
+        .text-xl {
+          font-size: 1.125rem !important;
+        }
+        
+        .py-20 {
+          padding-top: 40px !important;
+          padding-bottom: 40px !important;
+        }
+        
+        .space-y-6 > * + * {
+          margin-top: 1rem !important;
+        }
+        
+        .grid {
+          gap: 15px !important;
+        }
+        
+        /* Image adjustments for small phones */
+         .strategy-image {
+           height: 120px;
+           border-radius: 8px;
+           box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+           margin-bottom: 10px;
+         }
+         
+         .strategy-image::before {
+           border-radius: 8px;
+         }
+         
+         .strategy-image img {
+           border-radius: 8px;
+         }
+      }
+      
+      /* Extra small phones */
+      @media (max-width: 360px) {
+        .hero-title {
+          font-size: 1.5rem !important;
+        }
+        
+        .hero-subtitle {
+          font-size: 0.85rem !important;
+        }
+        
+        .container, .max-w-7xl {
+          padding: 0 10px;
+        }
+        
+        .glass {
+          margin: 0 3px;
+          padding: 12px !important;
+        }
+        
+        .text-3xl, .text-4xl {
+          font-size: 1.25rem !important;
+        }
+        
+        .text-2xl {
+          font-size: 1.125rem !important;
+        }
+        
+        .text-xl {
+          font-size: 1rem !important;
+        }
+        
+        .py-20 {
+          padding-top: 30px !important;
+          padding-bottom: 30px !important;
+        }
+        
+        /* Image adjustments for extra small phones */
+         .strategy-image {
+           height: 100px;
+           border-radius: 6px;
+           box-shadow: 0 1px 8px rgba(0, 0, 0, 0.12);
+           margin-bottom: 8px;
+         }
+         
+         .strategy-image::before {
+           border-radius: 6px;
+         }
+         
+         .strategy-image img {
+           border-radius: 6px;
+         }
+      }
+       
+       /* Touch-friendly mobile styles */
+       @media (hover: none) and (pointer: coarse) {
+         .nav-link, .mobile-menu a {
+           min-height: 48px;
+           display: flex;
+           align-items: center;
+           padding: 12px 16px;
+         }
+         
+         button {
+           min-height: 48px;
+           min-width: 48px;
+           padding: 12px;
+         }
+         
+         .strategy-card {
+           transform: none !important;
+         }
+         
+         .strategy-card:hover {
+           transform: none !important;
+         }
+         
+         /* Disable hover effects on touch devices */
+         .hover\:text-red-400:hover {
+           color: inherit;
+         }
+         
+         .hover\:bg-black\/30:hover {
+           background-color: inherit;
+         }
+       }
+       
+       /* Mobile-specific improvements */
+       @media (max-width: 768px) {
+         /* Better button styling for mobile */
+         button {
+           font-size: 16px; /* Prevents zoom on iOS */
+           border-radius: 8px;
+         }
+         
+         /* Improved form elements */
+         input, textarea, select {
+           font-size: 16px; /* Prevents zoom on iOS */
+           padding: 12px;
+           border-radius: 8px;
+         }
+         
+         /* Better image handling */
+         img {
+           max-width: 100%;
+           height: auto;
+         }
+         
+         /* Enhanced strategy image styling */
+         .strategy-image {
+           width: 100%;
+           height: 200px;
+           overflow: hidden;
+           border-radius: 16px;
+           margin-bottom: 16px;
+           position: relative;
+           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+           background: linear-gradient(45deg, #1a1a2e, #16213e);
+         }
+         
+         .strategy-image::before {
+           content: '';
+           position: absolute;
+           top: 0;
+           left: 0;
+           right: 0;
+           bottom: 0;
+           background: linear-gradient(135deg, rgba(222, 35, 42, 0.1), rgba(241, 159, 172, 0.1));
+           opacity: 0;
+           transition: opacity 0.4s ease;
+           z-index: 2;
+           border-radius: 16px;
+         }
+         
+         .strategy-image:hover::before {
+           opacity: 1;
+         }
+         
+         .strategy-image img {
+           width: 100%;
+           height: 100%;
+           object-fit: cover;
+           object-position: center;
+           transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+           border-radius: 16px;
+           filter: brightness(0.9) contrast(1.1);
+         }
+         
+         .strategy-item:hover .strategy-image img,
+         .strategy-card:hover .strategy-image img {
+           transform: scale(1.08);
+           filter: brightness(1) contrast(1.2) saturate(1.1);
+         }
+         
+         /* Loading animation for images */
+         .strategy-image img {
+           animation: imageLoad 0.8s ease-out;
+         }
+         
+         @keyframes imageLoad {
+           from {
+             opacity: 0;
+             transform: scale(0.95);
+           }
+           to {
+             opacity: 1;
+             transform: scale(1);
+           }
+         }
+         
+         /* Improved progress bars for mobile */
+         .progress-bar {
+           height: 8px;
+           border-radius: 4px;
+         }
+         
+         /* Better spacing for mobile */
+         .space-y-4 > * + * {
+           margin-top: 1rem;
+         }
+         
+         .space-y-6 > * + * {
+           margin-top: 1.5rem;
+         }
+         
+         /* Mobile-friendly charts */
+         .chart-container {
+           height: 250px !important;
+         }
+         
+         /* Better mobile menu positioning */
+           #mobile-menu {
+             left: 8px;
+             right: 8px;
+             margin-top: 8px;
+             max-width: calc(100vw - 16px);
+             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+           }
+           
+           /* Improved mobile menu links */
+           #mobile-menu {
+             position: absolute;
+             top: 100%;
+             left: 0;
+             right: 0;
+             background: rgba(0, 0, 0, 0.95);
+             backdrop-filter: blur(10px);
+             border-radius: 12px;
+             padding: 16px;
+             z-index: 1000;
+           }
+           
+           #mobile-menu a {
+             display: block;
+             padding: 14px 18px;
+             margin: 6px 0;
+             border-radius: 10px;
+             text-decoration: none;
+             color: white;
+             font-weight: 500;
+             transition: all 0.3s ease;
+             border: 1px solid transparent;
+           }
+           
+           #mobile-menu a:hover {
+             background: rgba(222, 35, 42, 0.2);
+             border-color: rgba(222, 35, 42, 0.3);
+             transform: translateX(4px);
+           }
+           
+           #mobile-menu a:active {
+             transform: scale(0.98);
+           }
+          
+          /* Mobile button improvements */
+          button {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: rgba(222, 35, 42, 0.3);
+          }
+          
+          /* Hero section mobile improvements */
+          .hero-info {
+            margin-top: 2rem;
+          }
+          
+          /* Better mobile card layouts */
+          .strategy-card {
+            width: 100%;
+            box-sizing: border-box;
+          }
+          
+          /* Mobile-friendly progress indicators */
+          .progress-fill {
+            transition: width 1s ease-in-out;
+          }
+          
+          /* Improved mobile typography */
+          p, li, span {
+            line-height: 1.6;
+          }
+          
+          /* Better mobile navigation */
+          .nav-link {
+            padding: 8px 12px;
+            border-radius: 6px;
+          }
+        }
+        
+        /* Landscape phone optimizations */
+        @media (max-width: 896px) and (orientation: landscape) {
+          .hero-title {
+            font-size: 1.5rem !important;
+          }
+          
+          .hero-subtitle {
+            font-size: 0.9rem !important;
+          }
+          
+          section {
+            padding: 40px 0 !important;
+          }
+          
+          .py-20 {
+            padding-top: 30px !important;
+            padding-bottom: 30px !important;
+          }
+        }
+       
+       /* Mobile menu animations */
+       #mobile-menu {
+         opacity: 0;
+         transform: translateY(-10px);
+         transition: all 0.3s ease-in-out;
+       }
+       
+       #mobile-menu:not(.hidden) {
+         opacity: 1;
+         transform: translateY(0);
+       }
+       
+       /* Improved mobile menu links */
+       #mobile-menu a {
+         touch-action: manipulation;
+         -webkit-tap-highlight-color: rgba(222, 35, 42, 0.3);
+       }
+
+      /* Ensure content visibility */
+      .hero-title {
+        color: white !important;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+      }
+
+      .hero-subtitle {
+        color: #e5e7eb !important;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+      }
+
+      /* Fallback for content sections */
+      section {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--primary-dark);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--accent-red);
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-pink);
+      }
+
+      /* Three.js canvas */
+      #three-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      /* Particles container */
+      #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      /* Strategy card */
+      .strategy-card {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .strategy-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      /* Strategy timeline */
+      .strategy-timeline {
+        position: relative;
+        padding: 20px 0;
+      }
+
+      .strategy-timeline::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 2px;
+        height: 100%;
+        background: var(--accent-blue);
+        transform: translateX(-50%);
+      }
+
+      .strategy-item {
+        position: relative;
+        margin-bottom: 50px;
+        width: 50%;
+      }
+
+      .strategy-item:nth-child(odd) {
+        left: 0;
+        padding-right: 40px;
+        text-align: right;
+      }
+
+      .strategy-item:nth-child(even) {
+        left: 50%;
+        padding-left: 40px;
+      }
+
+      .strategy-dot {
+        position: absolute;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--accent-red);
+        border: 4px solid var(--primary-dark);
+      }
+
+      .strategy-item:nth-child(odd) .strategy-dot {
+        right: -10px;
+      }
+
+      .strategy-item:nth-child(even) .strategy-dot {
+        left: -10px;
+      }
+
+      .strategy-content {
+        background: var(--primary-blue);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Chart container */
+      .chart-container {
+        position: relative;
+        height: 300px;
+        width: 100%;
+      }
+
+      /* Progress bars */
+      .progress-bar {
+        height: 10px;
+        background: rgba(57, 73, 171, 0.3);
+        border-radius: 5px;
+        overflow: hidden;
+        margin-top: 10px;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          var(--accent-blue),
+          var(--accent-red)
+        );
+        border-radius: 5px;
+        transition: width 2s ease-out;
+      }
+
+      /* Enhanced Image styles */
+      .strategy-image {
+        height: 200px;
+        overflow: hidden;
+        border-radius: 16px;
+        margin-bottom: 20px;
+        position: relative;
+        background: linear-gradient(45deg, #1a1a2e, #16213e);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      }
+      
+      .strategy-image::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+        z-index: 1;
+        border-radius: 16px;
+        pointer-events: none;
+      }
+
+      .strategy-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        filter: brightness(0.95) contrast(1.05) saturate(1.1);
+        border-radius: 16px;
+      }
+
+      .strategy-card:hover .strategy-image img {
+        transform: scale(1.1) rotate(1deg);
+        filter: brightness(1.1) contrast(1.15) saturate(1.2);
+      }
+      
+      /* Image loading state */
+      .strategy-image img[loading="lazy"] {
+        opacity: 0;
+        transition: opacity 0.6s ease-in-out;
+      }
+      
+      .strategy-image img[loading="lazy"].loaded {
+        opacity: 1;
+      }
+
+      /* Video styles */
+      .strategy-video {
+        height: 200px;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+
+      .strategy-video video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Button styles */
+      .btn-primary {
+        background-color: var(--accent-blue);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--accent-red);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        border: 2px solid var(--accent-blue);
+        transition: all 0.3s ease;
+      }
+
+      .btn-outline:hover {
+        border-color: var(--accent-red);
+        background-color: rgba(229, 57, 53, 0.1);
+      }
+
+      /* Icon colors */
+      .icon-blue {
+        color: var(--accent-blue);
+      }
+
+      .icon-red {
+        color: var(--accent-red);
+      }
+
+      /* Back to top button */
+      #backToTop {
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      #backToTop.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Hidden class for mobile menu */
+      #mobile-menu.hidden {
+        display: none !important;
+      }
+
+      /* Mobile menu enhancements */
+      @media (max-width: 768px) {
+        #mobile-menu {
+          max-height: 400px;
+          overflow-y: auto;
+        }
+
+        .hero-title {
+          font-size: 2.5rem !important;
+        }
+
+        .hero-subtitle {
+          font-size: 1rem !important;
+        }
+
+        .strategy-card {
+          margin-bottom: 1.5rem;
+        }
+
+        .glass {
+          margin: 0.5rem;
+          padding: 1rem !important;
+        }
+      }
+
+      /* Responsive timeline */
+      @media (max-width: 768px) {
+        .strategy-timeline::before {
+          left: 20px;
+        }
+
+        .strategy-item {
+          width: 100%;
+          padding-left: 50px !important;
+          padding-right: 0 !important;
+          text-align: left !important;
+        }
+
+        .strategy-dot {
+          left: 10px !important;
+          right: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen overflow-x-hidden">
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Three.js Container -->
+    <div id="three-container"></div>
+
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full z-50 glass py-3 md:py-4 px-4 md:px-6 transition-all duration-300"
+      id="navbar"
+    >
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <div
+            class="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-blue-600 to-red-600 rounded-lg flex items-center justify-center"
+          >
+            <i class="fas fa-utensils text-white text-sm md:text-base"></i>
+          </div>
+          <span class="text-lg md:text-xl font-bold text-white"
+            >Tech Talk Solution</span
+          >
+        </div>
+
+        <div class="hidden md:flex space-x-6 lg:space-x-8">
+          <a
+            href="index.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Home</a
+          >
+          <a
+            href="about-us.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >About</a
+          >
+          <a
+            href="services.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Services</a
+          >
+          <a
+            href="why-choose-us.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Why Us</a
+          >
+          <a
+            href="Growth.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >growth strategies</a
+          >
+          <a
+            href="contact.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Contact</a
+          >
+        </div>
+
+        <button
+          class="md:hidden text-xl sm:text-2xl text-white p-3 sm:p-4 rounded-xl bg-black/20 shadow-lg hover:bg-black/30 transition-all duration-300 border border-red-500/30 min-w-[48px] min-h-[48px] flex items-center justify-center"
+          id="mobile-menu-btn"
+          aria-label="Toggle mobile menu"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div
+        class="hidden absolute top-full left-0 right-0 mt-2 mx-2 sm:mx-4 glass rounded-xl p-4 sm:p-6 shadow-2xl border border-red-500/30 z-50 transform transition-all duration-300 ease-in-out"
+        id="mobile-menu"
+        style="max-height: calc(100vh - 120px); overflow-y: auto;"
+      >
+        <a
+          href="index.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >🏠 Home</a
+        >
+        <a
+          href="about-us.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >👥 About</a
+        >
+        <a
+          href="services.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >🛠️ Services</a
+        >
+        <a
+          href="why-choose-us.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >⭐ Why Us</a
+        >
+        <a
+          href="Growth.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >💬 growth strategies
+        </a>
+        <a
+          href="contact.html"
+          class="block py-3 px-2 sm:px-3 text-white hover:text-red-400 transition-colors font-medium text-sm sm:text-base"
+          >Contact</a
+        >
+      </div>
+    </nav>
+
+    <!-- Hero
+
+
+    <!-- Hero Section -->
+    <section
+      id="hero"
+      class="pt-32 pb-20 px-6 min-h-screen flex items-center relative"
+      style="
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.4)
+          ),
+          url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: white;
+      "
+    >
+      <div
+        class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10"
+      >
+        <div class="space-y-6" style="margin-bottom: 2rem">
+          <h1
+            style="
+              font-size: 3rem;
+              font-weight: bold;
+              color: white;
+              margin-bottom: 1rem;
+              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            "
+          >
+            Growth <span style="color: #de232a">Strategy</span>
+          </h1>
+          <p
+            style="
+              font-size: 1.2rem;
+              color: #e5e7eb;
+              max-width: 500px;
+              margin-bottom: 2rem;
+              text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            "
+          >
+            Our strategic roadmap for expansion and innovation in restaurant
+            support services.
+          </p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+            <button
+              style="
+                padding: 14px 28px;
+                background: #de232a;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-weight: 500;
+                cursor: pointer;
+                font-size: 16px;
+                min-height: 48px;
+                min-width: 120px;
+                transition: all 0.3s ease;
+              "
+              onmouseover="this.style.background='#c41e24'"
+              onmouseout="this.style.background='#de232a'"
+            >
+              Our Plan
+            </button>
+            <button
+              style="
+                padding: 14px 28px;
+                background: transparent;
+                color: white;
+                border: 2px solid #de232a;
+                border-radius: 8px;
+                font-weight: 500;
+                cursor: pointer;
+                font-size: 16px;
+                min-height: 48px;
+                min-width: 120px;
+                transition: all 0.3s ease;
+              "
+              onmouseover="this.style.background='#de232a'; this.style.color='white'"
+              onmouseout="this.style.background='transparent'; this.style.color='white'"
+            >
+              Join Us
+            </button>
+          </div>
+        </div>
+
+        <div class="glass rounded-2xl p-8 hero-info floating">
+          <h3 class="text-2xl font-bold mb-6">Strategic Overview</h3>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between mb-1">
+                <span>Market Expansion</span>
+                <span>75%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" data-width="75"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span>Technology Integration</span>
+                <span>60%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" data-width="60"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span>AI Implementation</span>
+                <span>40%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" data-width="40"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span>Customer Satisfaction</span>
+                <span>90%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" data-width="90"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Growth Strategy Timeline -->
+    <section
+      id="strategy-timeline"
+      class="py-20 px-6 relative"
+      style="
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: white;
+      "
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 strategy-header">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Strategic Growth Plan (2023-2024)
+          </h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            Our roadmap for innovation and expansion
+          </p>
+        </div>
+
+        <div class="strategy-timeline">
+          <div class="strategy-item">
+            <div class="strategy-dot"></div>
+            <div class="strategy-content">
+              <div class="strategy-image">
+                <img
+                  src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                  alt="Regional Expansion - Manchester & Birmingham Growth Strategy"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h3 class="text-xl font-bold mb-2">
+                Q3 2023: Regional Expansion
+              </h3>
+              <ul class="text-gray-300">
+                <li>Focus on Manchester & Birmingham</li>
+                <li>Local support team establishment</li>
+                <li>Regional marketing initiatives</li>
+              </ul>
+              <div class="mt-4">
+                <div class="flex justify-between mb-1">
+                  <span>Completion</span>
+                  <span>85%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" data-width="85"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="strategy-item">
+            <div class="strategy-dot"></div>
+            <div class="strategy-content">
+              <div class="strategy-image">
+                <img
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
+                  alt="Platform Automation - EPOS & CRM Integration Technology"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h3 class="text-xl font-bold mb-2">
+                Q4 2023: Platform Automation
+              </h3>
+              <ul class="text-gray-300">
+                <li>Enhanced EPOS + CRM integration</li>
+                <li>Automated order processing</li>
+                <li>Intelligent data analysis</li>
+              </ul>
+              <div class="mt-4">
+                <div class="flex justify-between mb-1">
+                  <span>Completion</span>
+                  <span>65%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" data-width="65"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="strategy-item">
+            <div class="strategy-dot"></div>
+            <div class="strategy-content">
+              <div class="strategy-image">
+                <img
+                  src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                  alt="AI Integration - Artificial Intelligence Technology Solutions"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h3 class="text-xl font-bold mb-2">Q1 2024: AI Integration</h3>
+              <ul class="text-gray-300">
+                <li>Smart chatbot implementation</li>
+                <li>Predictive customer analysis</li>
+                <li>Sentiment analysis tools</li>
+              </ul>
+              <div class="mt-4">
+                <div class="flex justify-between mb-1">
+                  <span>Completion</span>
+                  <span>30%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" data-width="30"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Market Expansion Section -->
+    <section
+      id="market-expansion"
+      class="py-20 px-6 relative"
+      style="
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: white;
+      "
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 expansion-header">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Market Expansion Strategy
+          </h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            Our plan to expand our reach across the UK
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="glass p-8 rounded-2xl strategy-card">
+            <div class="strategy-image">
+              <img
+                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                alt="UK Market Expansion Map - Target Cities for Growth"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Target Markets</h3>
+            <div class="space-y-4">
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center mr-4"
+                >
+                  <i class="fas fa-map-marker-alt text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Manchester</h4>
+                  <p class="text-gray-400">Q3 2023 Launch</p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center mr-4"
+                >
+                  <i class="fas fa-map-marker-alt text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Birmingham</h4>
+                  <p class="text-gray-400">Q3 2023 Launch</p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-purple-800 flex items-center justify-center mr-4"
+                >
+                  <i class="fas fa-map-marker-alt text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Liverpool</h4>
+                  <p class="text-gray-400">Q1 2024 Planned</p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-purple-800 flex items-center justify-center mr-4"
+                >
+                  <i class="fas fa-map-marker-alt text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Leeds</h4>
+                  <p class="text-gray-400">Q2 2024 Planned</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass p-8 rounded-2xl strategy-card">
+            <h3 class="text-2xl font-bold mb-4">Growth Projections</h3>
+            <div class="chart-container">
+              <canvas id="growthChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technology Integration Section -->
+    <section id="tech-integration" class="py-20 px-6 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 tech-header">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Technology Integration Roadmap
+          </h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            Our plan to enhance our technological capabilities
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="glass p-6 rounded-2xl strategy-card">
+            <div class="strategy-image">
+              <img
+                src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
+                alt="Platform Automation Technology - EPOS CRM Integration Systems"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-cogs text-2xl text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-center">
+              Platform Automation
+            </h3>
+            <ul class="space-y-2 text-gray-300">
+              <li class="flex items-start">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                <span>Enhanced EPOS + CRM integration</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                <span>Automated order processing</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                <span>Intelligent data analysis</span>
+              </li>
+            </ul>
+            <div class="mt-4">
+              <div class="flex justify-between mb-1">
+                <span>Progress</span>
+                <span>65%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" data-width="65"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass p-6 rounded-2xl strategy-card">
+            <div class="strategy-image">
+              <img
+                src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                alt="AI Technology - Artificial Intelligence Integration Solutions"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-purple-600 to-purple-800 rounded-lg flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-robot text-2xl text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-center">AI Integration</h3>
+            <ul class="space-y-2 text-gray-300">
+              <li class="flex items-start">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                <span>Smart chatbot implementation</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                <span>Predictive customer analysis</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                <span>Sentiment analysis tools</span>
+              </li>
+            </ul>
+            <div class="mt-4">
+              <div class="flex justify-between mb-1">
+                <span>Progress</span>
+                <span>30%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" data-width="30"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass p-6 rounded-2xl strategy-card">
+            <div class="strategy-image">
+              <img
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                alt="Data Analytics - Real-time Performance Metrics Dashboard"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-red-600 to-red-800 rounded-lg flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-chart-line text-2xl text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-center">Data Analytics</h3>
+            <ul class="space-y-2 text-gray-300">
+              <li class="flex items-start">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                <span>Real-time performance metrics</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                <span>Customer behavior insights</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                <span>Revenue optimization tools</span>
+              </li>
+            </ul>
+            <div class="mt-4">
+              <div class="flex justify-between mb-1">
+                <span>Progress</span>
+                <span>45%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" data-width="45"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Investment & Returns Section -->
+    <section
+      id="investment"
+      class="py-20 px-6 relative"
+      style="
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: white;
+      "
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 investment-header">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Investment & Expected Returns
+          </h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            Our investment strategy and projected returns
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="glass p-8 rounded-2xl strategy-card">
+            <div class="strategy-image">
+              <img
+                src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
+                alt="Investment Strategy - Financial Planning and Resource Allocation"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <h3 class="text-2xl font-bold mb-6">Investment Allocation</h3>
+            <div class="chart-container">
+              <canvas id="investmentChart"></canvas>
+            </div>
+          </div>
+
+          <div class="glass p-8 rounded-2xl strategy-card">
+            <div class="strategy-image">
+              <img
+                src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
+                alt="Business Finance and Returns - Revenue Growth Projections"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <h3 class="text-2xl font-bold mb-6">Expected Returns</h3>
+            <div class="space-y-6">
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span>Revenue Growth</span>
+                  <span class="gradient-text font-bold">+45%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" data-width="45"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span>Market Share</span>
+                  <span class="gradient-text font-bold">+30%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" data-width="30"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span>Customer Retention</span>
+                  <span class="gradient-text font-bold">+25%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" data-width="25"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span>Operational Efficiency</span>
+                  <span class="gradient-text font-bold">+60%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" data-width="60"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Join Us Section -->
+    <section id="join-us" class="py-20 px-6 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="glass rounded-2xl p-2 overflow-hidden">
+          <div class="relative h-96">
+            <img
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+              alt="Business Partnership - Join Our Growth Journey Team Collaboration"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60"
+            ></div>
+          </div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="text-center max-w-2xl mx-auto">
+              <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                Join Our Growth Journey
+              </h2>
+              <p class="text-lg text-gray-300 mb-8">
+                Partner with us as we expand our services and transform the
+                restaurant support industry.
+              </p>
+              <div class="flex flex-wrap justify-center gap-4">
+                <a
+                  href="contact.html"
+                  class="px-8 py-3 btn-primary rounded-lg font-medium inline-block"
+                >
+                  Partner With Us
+                </a>
+                <a
+                  href="services.html"
+                  class="px-8 py-3 btn-outline rounded-lg font-medium inline-block"
+                >
+                  Explore Services
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 px-6 border-t border-gray-800">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <div class="flex items-center space-x-2">
+              <div
+                class="w-8 h-8 bg-gradient-to-r from-blue-600 to-red-600 rounded-lg flex items-center justify-center"
+              >
+                <i class="fas fa-utensils text-white"></i>
+              </div>
+              <span class="text-xl font-bold">Tech Talk Solution</span>
+            </div>
+            <p class="text-gray-500 mt-2">Restaurant Support Services</p>
+          </div>
+
+          <div class="flex space-x-6">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-blue-400 transition-colors"
+            >
+              <i class="fab fa-facebook text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-blue-400 transition-colors"
+            >
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-blue-400 transition-colors"
+            >
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-blue-400 transition-colors"
+            >
+              <i class="fab fa-linkedin text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-10 text-center text-gray-500 text-sm">
+          <p>© 2023 Tech Talk Solution. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button
+      id="backToTop"
+      class="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-blue-600 to-red-600 rounded-full flex items-center justify-center shadow-lg z-50"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+      // Initialize tsParticles
+      tsParticles.load("particles-js", {
+        particles: {
+          number: {
+            value: 80,
+            density: {
+              enable: true,
+              value_area: 800,
+            },
+          },
+          color: {
+            value: "#3949ab",
+          },
+          shape: {
+            type: "circle",
+          },
+          opacity: {
+            value: 0.5,
+            random: true,
+          },
+          size: {
+            value: 3,
+            random: true,
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+          },
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "repulse",
+            },
+            onclick: {
+              enable: true,
+              mode: "push",
+            },
+            resize: true,
+          },
+        },
+        retina_detect: true,
+      });
+
+      // Initialize Three.js
+      let scene, camera, renderer, particles;
+
+      function initThree() {
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(
+          75,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          1000
+        );
+
+        renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document
+          .getElementById("three-container")
+          .appendChild(renderer.domElement);
+
+        // Create particles
+        const geometry = new THREE.BufferGeometry();
+        const vertices = [];
+
+        for (let i = 0; i < 500; i++) {
+          vertices.push(
+            Math.random() * 2000 - 1000,
+            Math.random() * 2000 - 1000,
+            Math.random() * 2000 - 1000
+          );
+        }
+
+        geometry.setAttribute(
+          "position",
+          new THREE.Float32BufferAttribute(vertices, 3)
+        );
+
+        const material = new THREE.PointsMaterial({
+          color: 0x3949ab,
+          size: 2,
+          transparent: true,
+          opacity: 0.8,
+        });
+
+        particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+
+        camera.position.z = 500;
+
+        animate();
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        particles.rotation.x += 0.001;
+        particles.rotation.y += 0.002;
+
+        renderer.render(scene, camera);
+      }
+
+      initThree();
+
+      // Initialize Vanta.js
+      if (typeof VANTA !== "undefined") {
+        VANTA.WAVES({
+          el: "#hero",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          scale: 1.0,
+          scaleMobile: 1.0,
+          color: 0x0a0e27,
+          shininess: 30.0,
+          waveHeight: 10.0,
+          waveSpeed: 0.75,
+          zoom: 0.75,
+        });
+      }
+
+      // Initialize ScrollReveal
+      ScrollReveal().reveal(".hero-title", {
+        delay: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".hero-subtitle", {
+        delay: 400,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".hero-buttons", {
+        delay: 600,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".hero-info", {
+        delay: 800,
+        distance: "50px",
+        origin: "right",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".strategy-header", {
+        delay: 200,
+        distance: "50px",
+        origin: "top",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".strategy-item", {
+        interval: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".expansion-header", {
+        delay: 200,
+        distance: "50px",
+        origin: "top",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".strategy-card", {
+        interval: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".tech-header", {
+        delay: 200,
+        distance: "50px",
+        origin: "top",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".investment-header", {
+        delay: 200,
+        distance: "50px",
+        origin: "top",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal("#join-us", {
+        delay: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      // GSAP Animations
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Navbar animation on scroll
+      gsap.to("#navbar", {
+        scrollTrigger: {
+          trigger: "#hero",
+          start: "bottom top",
+          end: "bottom top",
+          toggleActions: "play none none reverse",
+        },
+        backgroundColor: "rgba(10, 14, 39, 0.9)",
+        duration: 0.3,
+      });
+
+      // Progress bars animation
+      const progressBars = document.querySelectorAll(".progress-fill");
+      progressBars.forEach((bar) => {
+        const width = bar.getAttribute("data-width");
+        gsap.to(bar, {
+          width: width + "%",
+          duration: 2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: bar,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        });
+      });
+
+      // Strategy cards hover effect
+      const strategyCards = document.querySelectorAll(".strategy-card");
+      strategyCards.forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          gsap.to(card, {
+            y: -10,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, {
+            y: 0,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+      });
+
+      // Growth Chart
+      const growthCtx = document.getElementById("growthChart").getContext("2d");
+      const growthChart = new Chart(growthCtx, {
+        type: "line",
+        data: {
+          labels: [
+            "Q1 2023",
+            "Q2 2023",
+            "Q3 2023",
+            "Q4 2023",
+            "Q1 2024",
+            "Q2 2024",
+          ],
+          datasets: [
+            {
+              label: "Projected Growth",
+              data: [100, 120, 150, 180, 220, 260],
+              backgroundColor: "rgba(57, 73, 171, 0.2)",
+              borderColor: "#3949ab",
+              borderWidth: 2,
+              tension: 0.4,
+              fill: true,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: {
+                color: "#f5f5f5",
+              },
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: {
+                color: "rgba(245, 245, 245, 0.1)",
+              },
+              ticks: {
+                color: "#f5f5f5",
+              },
+            },
+            x: {
+              grid: {
+                color: "rgba(245, 245, 245, 0.1)",
+              },
+              ticks: {
+                color: "#f5f5f5",
+              },
+            },
+          },
+        },
+      });
+
+      // Investment Chart
+      const investmentCtx = document
+        .getElementById("investmentChart")
+        .getContext("2d");
+      const investmentChart = new Chart(investmentCtx, {
+        type: "doughnut",
+        data: {
+          labels: [
+            "Technology",
+            "Marketing",
+            "Expansion",
+            "Team",
+            "Operations",
+          ],
+          datasets: [
+            {
+              data: [35, 25, 20, 15, 5],
+              backgroundColor: [
+                "#3949ab",
+                "#5c6bc0",
+                "#7986cb",
+                "#e53935",
+                "#ef5350",
+              ],
+              borderWidth: 0,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: "right",
+              labels: {
+                color: "#f5f5f5",
+                padding: 20,
+              },
+            },
+          },
+        },
+      });
+
+      // Mobile menu toggle with enhanced functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const navbar = document.getElementById("navbar");
+
+        console.log("Mobile menu elements:", { mobileMenuBtn, mobileMenu });
+
+        if (mobileMenuBtn && mobileMenu) {
+          // Toggle mobile menu
+          mobileMenuBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            console.log("Mobile menu button clicked");
+            
+            const isHidden = mobileMenu.classList.contains("hidden");
+            
+            if (isHidden) {
+              mobileMenu.classList.remove("hidden");
+              mobileMenu.style.display = "block";
+              mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+              document.body.style.overflow = "hidden"; // Prevent background scroll
+              console.log("Menu opened");
+            } else {
+              mobileMenu.classList.add("hidden");
+              mobileMenu.style.display = "none";
+              mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+              document.body.style.overflow = "auto";
+              console.log("Menu closed");
+            }
+          });
+
+          // Close menu when clicking outside
+          document.addEventListener("click", (e) => {
+            if (
+              !mobileMenu.contains(e.target) &&
+              !mobileMenuBtn.contains(e.target) &&
+              !mobileMenu.classList.contains("hidden")
+            ) {
+              mobileMenu.classList.add("hidden");
+              mobileMenu.style.display = "none";
+              mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+              document.body.style.overflow = "auto";
+            }
+          });
+
+          // Close menu when clicking on menu links
+          const mobileMenuLinks = mobileMenu.querySelectorAll("a");
+          mobileMenuLinks.forEach(link => {
+            link.addEventListener("click", () => {
+              mobileMenu.classList.add("hidden");
+              mobileMenu.style.display = "none";
+              mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+              document.body.style.overflow = "auto";
+            });
+          });
+
+          // Handle window resize
+          window.addEventListener("resize", () => {
+            if (window.innerWidth >= 768) {
+              mobileMenu.classList.add("hidden");
+              mobileMenu.style.display = "none";
+              mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+              document.body.style.overflow = "auto";
+            }
+          });
+        }
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 80,
+              behavior: "smooth",
+            });
+            // Close mobile menu if open
+            mobileMenu.classList.add("hidden");
+          }
+        });
+      });
+
+      // Back to top functionality
+      const backToTop = document.getElementById("backToTop");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      });
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Window resize handler for Three.js
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    </script>
+  </body>
+</html>

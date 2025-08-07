@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="About Tech Talk Solution - Learn about our journey, mission, and values as a leading restaurant support services provider"
+    />
+    <meta
+      name="keywords"
+      content="about us, restaurant support, company history, mission, values"
+    />
+    <meta name="author" content="Tech Talk Solution" />
+
+    <title>About Us | Tech Talk Solution</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
+
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <!-- ScrollReveal -->
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+
+    <!-- Vanta.js -->
+    <!-- Vanta.js removed due to CDN loading issues - using CSS animations instead -->
+
+    <!-- Lottie -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
+    <!-- Shery.js -->
+    <!-- Shery.js removed due to CDN loading issues - using CSS animations instead -->
+
+    <!-- Parallax.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Custom styles -->
+    <style>
+      /* Color theme matching techtalksolution.co.uk */
+      :root {
+        --primary-dark: #0a0e27; /* A deep, rich blue-black for better contrast */
+        --accent-red: #de232a; /* The vibrant red from user */
+        --accent-pink: #f19fac; /* The soft pink from user */
+        --text-light: #f5f5f5;
+        --text-muted: #b0bec5;
+      }
+
+      body {
+        background-color: var(--primary-dark);
+        background-image: url("https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+        color: var(--text-light);
+      }
+
+      /* Custom animations */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .floating {
+        animation: float 4s ease-in-out infinite;
+      }
+
+      /* Gradient text */
+      .gradient-text {
+        background: linear-gradient(
+          90deg,
+          var(--accent-red),
+          var(--accent-pink)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Glassmorphism effect */
+      .glass {
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(222, 35, 42, 0.3);
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--primary-dark);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--accent-red);
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-pink);
+      }
+
+      /* Three.js canvas */
+      #three-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      /* Particles container */
+      #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      /* Timeline styles */
+      .timeline {
+        position: relative;
+        padding: 20px 0;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 2px;
+        height: 100%;
+        background: var(--accent-blue);
+        transform: translateX(-50%);
+      }
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 50px;
+        width: 50%;
+      }
+
+      .timeline-item:nth-child(odd) {
+        left: 0;
+        padding-right: 40px;
+        text-align: right;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 50%;
+        padding-left: 40px;
+      }
+
+      .timeline-dot {
+        position: absolute;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--accent-red);
+        border: 4px solid var(--primary-dark);
+      }
+
+      .timeline-item:nth-child(odd) .timeline-dot {
+        right: -10px;
+      }
+
+      .timeline-item:nth-child(even) .timeline-dot {
+        left: -10px;
+      }
+
+      .timeline-content {
+        background: var(--primary-blue);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Value card */
+      .value-card {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .value-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          rgba(57, 73, 171, 0.1),
+          rgba(229, 57, 53, 0.1)
+        );
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .value-card:hover::before {
+        opacity: 1;
+      }
+
+      .value-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      /* Team member card */
+      .team-card {
+        transition: all 0.3s ease;
+      }
+
+      .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      /* Button styles */
+      .btn-primary {
+        background-color: var(--accent-blue);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--accent-red);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        border: 2px solid var(--accent-blue);
+        transition: all 0.3s ease;
+      }
+
+      .btn-outline:hover {
+        border-color: var(--accent-red);
+        background-color: rgba(229, 57, 53, 0.1);
+      }
+
+      /* Icon colors */
+      .icon-blue {
+        color: var(--accent-blue);
+      }
+
+      .icon-red {
+        color: var(--accent-red);
+      }
+
+      /* Back to top button */
+      #backToTop {
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      #backToTop.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Responsive timeline */
+      @media (max-width: 768px) {
+        .timeline::before {
+          left: 20px;
+        }
+
+        .timeline-item {
+          width: 100%;
+          padding-left: 50px !important;
+          padding-right: 0 !important;
+          text-align: left !important;
+        }
+
+        .timeline-dot {
+          left: 10px !important;
+          right: auto !important;
+        }
+      }
+
+      /* Aspect ratio for video embeds */
+      .aspect-w-16 {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      }
+
+      .aspect-h-9 {
+        /* This class is a companion to .aspect-w-16 */
+      }
+
+      .aspect-w-16 > * {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen overflow-x-hidden">
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Three.js Container -->
+    <div id="three-container"></div>
+
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full z-50 glass py-3 md:py-4 px-4 md:px-6 transition-all duration-300"
+      id="navbar"
+    >
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <div
+            class="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-blue-600 to-red-600 rounded-lg flex items-center justify-center"
+          >
+            <i class="fas fa-utensils text-white text-sm md:text-base"></i>
+          </div>
+          <span class="text-lg md:text-xl font-bold text-white">Tech Talk Solution</span>
+        </div>
+
+        <div class="hidden md:flex space-x-6 lg:space-x-8">
+          <a
+            href="index.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Home</a
+          >
+          <a
+            href="about-us.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >About</a
+          >
+          <a
+            href="services.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Services</a
+          >
+          <a
+            href="why-choose-us.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Why Us</a
+          >
+          <a
+            href="Growth.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Growth Strategies
+          </a>
+          <a
+            href="contact.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Contact</a
+          >
+        </div>
+
+        <button class="md:hidden text-xl sm:text-2xl text-white p-2 sm:p-3 rounded-xl bg-black/20 shadow-lg hover:bg-black/30 transition-all duration-300 border border-red-500/30" id="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="hidden absolute top-full left-0 right-0 mt-2 mx-2 sm:mx-4 glass rounded-xl p-4 sm:p-6 shadow-2xl border border-red-500/30 z-50" id="mobile-menu">
+        <a href="index.html" class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >🏠 Home</a
+        >
+        <a
+          href="about-us.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >👥 About</a
+        >
+        <a
+          href="services.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >🛠️ Services</a
+        >
+        <a
+          href="why-choose-us.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >⭐ Why Us</a
+        >
+        <a
+          href="Growth.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >💬 Growth Strategies</a
+        >
+        <a
+          href="contact.html"
+          class="block py-3 px-2 sm:px-3 text-white hover:text-red-400 transition-colors font-medium text-sm sm:text-base"
+          >Contact</a
+        >
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="hero"
+      class="pt-32 pb-20 px-6 min-h-screen flex items-center relative"
+    >
+      <div
+        class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10"
+      >
+        <div class="space-y-6">
+          <h1 class="text-4xl md:text-6xl font-bold hero-title">
+            About <span class="gradient-text">Tech Talk Solution</span>
+          </h1>
+          <p class="text-lg text-gray-300 max-w-lg hero-subtitle">
+            Discover our journey, mission, and the values that drive us to
+            deliver exceptional restaurant support services.
+          </p>
+          <div class="flex flex-wrap gap-4 hero-buttons">
+            <button class="px-6 py-3 btn-primary rounded-lg font-medium">
+              Our Story
+            </button>
+            <button class="px-6 py-3 btn-outline rounded-lg font-medium">
+              Meet the Team
+            </button>
+          </div>
+        </div>
+
+        <div class="glass rounded-2xl p-8 hero-info floating">
+          <div class="space-y-4">
+            <div class="flex items-center space-x-4">
+              <i class="fas fa-building icon-blue text-xl"></i>
+              <div>
+                <h3 class="font-semibold">Founded</h3>
+                <p class="text-gray-300">2020</p>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+              <i class="fas fa-map-marker-alt icon-blue text-xl"></i>
+              <div>
+                <h3 class="font-semibold">Headquarters</h3>
+                <p class="text-gray-300">Blackburn, UK</p>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+              <i class="fas fa-users icon-blue text-xl"></i>
+              <div>
+                <h3 class="font-semibold">Team Size</h3>
+                <p class="text-gray-300">15+ Experts</p>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+              <i class="fas fa-utensils icon-blue text-xl"></i>
+              <div>
+                <h3 class="font-semibold">Clients Served</h3>
+                <p class="text-gray-300">500+ Restaurants</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="py-20 px-6 relative">
+      <div
+        class="max-w-4xl mx-auto glass rounded-2xl p-8 md:p-12 mission-section"
+      >
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">
+          Our Mission & Vision
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-bullseye text-2xl text-white"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Our Mission</h3>
+            <p class="text-gray-300">
+              To empower restaurants with innovative support solutions that
+              streamline operations, enhance customer experiences, and drive
+              sustainable growth. We are committed to reducing operational costs
+              while maximizing revenue opportunities for our clients.
+            </p>
+          </div>
+
+          <div>
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-red-600 to-red-800 rounded-lg flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-eye text-2xl text-white"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Our Vision</h3>
+            <p class="text-gray-300">
+              To become the leading restaurant support services provider in the
+              UK, known for our innovation, reliability, and exceptional
+              customer service. We envision a future where every restaurant can
+              thrive with the right support systems in place.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-8 flex justify-center">
+          <div class="lottie-container" id="mission-lottie"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-20 px-6 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 timeline-header">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Journey</h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            From our humble beginnings to becoming a trusted partner for
+            restaurants across the UK
+          </p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3 class="text-xl font-bold mb-2">2020 - Founded</h3>
+              <p class="text-gray-300">
+                Tech Talk Solution was established in Blackburn with a vision to
+                support local restaurants.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3 class="text-xl font-bold mb-2">2021 - First 100 Clients</h3>
+              <p class="text-gray-300">
+                Reached our first milestone of serving 100 restaurants across
+                the UK.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3 class="text-xl font-bold mb-2">2022 - Service Expansion</h3>
+              <p class="text-gray-300">
+                Expanded our services to include social media management and
+                EPOS integration.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3 class="text-xl font-bold mb-2">2023 - 500+ Clients</h3>
+              <p class="text-gray-300">
+                Celebrated serving over 500 restaurants with a 4.8/5 customer
+                rating.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section id="values" class="py-20 px-6 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 values-header">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Core Values</h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            The principles that guide everything we do
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 values-container">
+          <!-- Value 1 -->
+          <div class="glass p-8 rounded-2xl text-center value-card">
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-heart text-2xl text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Customer First</h3>
+            <p class="text-gray-300">
+              We prioritize our clients' needs and go above and beyond to exceed
+              their expectations.
+            </p>
+          </div>
+
+          <!-- Value 2 -->
+          <div class="glass p-8 rounded-2xl text-center value-card">
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-lightbulb text-2xl text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Innovation</h3>
+            <p class="text-gray-300">
+              We constantly seek new and better ways to serve our clients and
+              improve our services.
+            </p>
+          </div>
+
+          <!-- Value 3 -->
+          <div class="glass p-8 rounded-2xl text-center value-card">
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-handshake text-2xl text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Integrity</h3>
+            <p class="text-gray-300">
+              We operate with transparency, honesty, and ethical business
+              practices.
+            </p>
+          </div>
+
+          <!-- Value 4 -->
+          <div class="glass p-8 rounded-2xl text-center value-card">
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-rocket text-2xl text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Excellence</h3>
+            <p class="text-gray-300">
+              We strive for excellence in everything we do, from service
+              delivery to customer support.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How We Work Section -->
+    <section id="how-we-work" class="py-20 px-6 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">How We Work</h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            A glimpse into our process and how we deliver results for our
+            clients.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Video Card 1 -->
+          <div class="glass p-6 rounded-2xl text-center">
+            <div class="aspect-w-16 aspect-h-9 mb-4">
+              <iframe
+                class="rounded-lg"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <h3 class="text-xl font-bold mb-2">
+              Step 1: Discovery & Onboarding
+            </h3>
+            <p class="text-gray-300">
+              We start by understanding your unique needs and challenges.
+            </p>
+          </div>
+
+          <!-- Video Card 2 -->
+          <div class="glass p-6 rounded-2xl text-center">
+            <div class="aspect-w-16 aspect-h-9 mb-4">
+              <iframe
+                class="rounded-lg"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <h3 class="text-xl font-bold mb-2">
+              Step 2: Strategy & Implementation
+            </h3>
+            <p class="text-gray-300">
+              We develop a tailored strategy and seamlessly integrate our
+              solutions.
+            </p>
+          </div>
+
+          <!-- Video Card 3 -->
+          <div class="glass p-6 rounded-2xl text-center">
+            <div class="aspect-w-16 aspect-h-9 mb-4">
+              <iframe
+                class="rounded-lg"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Step 3: Support & Growth</h3>
+            <p class="text-gray-300">
+              We provide ongoing support and work with you to drive growth.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20 px-6 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 team-header">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Meet Our Team</h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            The passionate individuals behind Tech Talk Solution
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 team-container">
+          <!-- Team Member 1 -->
+          <div class="glass p-6 rounded-2xl text-center team-card">
+            <div
+              class="w-24 h-24 rounded-full bg-gradient-to-r from-blue-600 to-red-600 flex items-center justify-center mx-auto mb-4"
+            >
+              <span class="text-2xl font-bold">JD</span>
+            </div>
+            <h3 class="text-xl font-bold mb-1">John Davis</h3>
+            <p class="text-blue-400 mb-4">Founder & CEO</p>
+            <p class="text-gray-300 text-sm">
+              With over 15 years in the restaurant industry, John leads our
+              vision and strategy.
+            </p>
+            <div class="flex justify-center space-x-3 mt-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-blue-400 transition-colors"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-blue-400 transition-colors"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Team Member 2 -->
+          <div class="glass p-6 rounded-2xl text-center team-card">
+            <div
+              class="w-24 h-24 rounded-full bg-gradient-to-r from-blue-600 to-red-600 flex items-center justify-center mx-auto mb-4"
+            >
+              <span class="text-2xl font-bold">SP</span>
+            </div>
+            <h3 class="text-xl font-bold mb-1">Sarah Patel</h3>
+            <p class="text-blue-400 mb-4">Operations Director</p>
+            <p class="text-gray-300 text-sm">
+              Sarah ensures smooth operations and exceptional service delivery.
+            </p>
+            <div class="flex justify-center space-x-3 mt-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-blue-400 transition-colors"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-blue-400 transition-colors"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Team Member 3 -->
+          <div class="glass p-6 rounded-2xl text-center team-card">
+            <div
+              class="w-24 h-24 rounded-full bg-gradient-to-r from-blue-600 to-red-600 flex items-center justify-center mx-auto mb-4"
+            >
+              <span class="text-2xl font-bold">MJ</span>
+            </div>
+            <h3 class="text-xl font-bold mb-1">Michael Johnson</h3>
+            <p class="text-blue-400 mb-4">Technical Lead</p>
+            <p class="text-gray-300 text-sm">
+              Michael oversees our technical solutions and system integrations.
+            </p>
+            <div class="flex justify-center space-x-3 mt-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-blue-400 transition-colors"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-blue-400 transition-colors"
+              >
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Team Member 4 -->
+          <div class="glass p-6 rounded-2xl text-center team-card">
+            <div
+              class="w-24 h-24 rounded-full bg-gradient-to-r from-blue-600 to-red-600 flex items-center justify-center mx-auto mb-4"
+            >
+              <span class="text-2xl font-bold">EW</span>
+            </div>
+            <h3 class="text-xl font-bold mb-1">Emma Wilson</h3>
+            <p class="text-blue-400 mb-4">Marketing Manager</p>
+            <p class="text-gray-300 text-sm">
+              Emma crafts compelling marketing strategies for our clients.
+            </p>
+            <div class="flex justify-center space-x-3 mt-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-blue-400 transition-colors"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-blue-400 transition-colors"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="py-20 px-6 relative">
+      <div class="max-w-4xl mx-auto glass rounded-2xl p-8 md:p-12 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          Ready to Transform Your Restaurant?
+        </h2>
+        <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+          Join hundreds of restaurants that have already transformed their
+          operations with our support services.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="contact.html"
+            class="px-8 py-3 btn-primary rounded-lg font-medium inline-block"
+          >
+            Get Started Today
+          </a>
+          <a
+            href="services.html"
+            class="px-8 py-3 btn-outline rounded-lg font-medium inline-block"
+          >
+            Explore Our Services
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 px-6 border-t border-gray-800">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <div class="flex items-center space-x-2">
+              <div
+                class="w-8 h-8 bg-gradient-to-r from-blue-600 to-red-600 rounded-lg flex items-center justify-center"
+              >
+                <i class="fas fa-utensils text-white"></i>
+              </div>
+              <span class="text-xl font-bold">Tech Talk Solution</span>
+            </div>
+            <p class="text-gray-500 mt-2">Restaurant Support Services</p>
+          </div>
+
+          <div class="flex space-x-6">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-blue-400 transition-colors"
+            >
+              <i class="fab fa-facebook text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-blue-400 transition-colors"
+            >
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-blue-400 transition-colors"
+            >
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-blue-400 transition-colors"
+            >
+              <i class="fab fa-linkedin text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-10 text-center text-gray-500 text-sm">
+          <p>© 2023 Tech Talk Solution. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button
+      id="backToTop"
+      class="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-blue-600 to-red-600 rounded-full flex items-center justify-center shadow-lg z-50"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+      // Initialize tsParticles
+      tsParticles.load("particles-js", {
+        particles: {
+          number: {
+            value: 80,
+            density: {
+              enable: true,
+              value_area: 800,
+            },
+          },
+          color: {
+            value: "#3949ab",
+          },
+          shape: {
+            type: "circle",
+          },
+          opacity: {
+            value: 0.5,
+            random: true,
+          },
+          size: {
+            value: 3,
+            random: true,
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+          },
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "repulse",
+            },
+            onclick: {
+              enable: true,
+              mode: "push",
+            },
+            resize: true,
+          },
+        },
+        retina_detect: true,
+      });
+
+      // Initialize Three.js
+      let scene, camera, renderer, particles;
+
+      function initThree() {
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(
+          75,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          1000
+        );
+
+        renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document
+          .getElementById("three-container")
+          .appendChild(renderer.domElement);
+
+        // Create particles
+        const geometry = new THREE.BufferGeometry();
+        const vertices = [];
+
+        for (let i = 0; i < 500; i++) {
+          vertices.push(
+            Math.random() * 2000 - 1000,
+            Math.random() * 2000 - 1000,
+            Math.random() * 2000 - 1000
+          );
+        }
+
+        geometry.setAttribute(
+          "position",
+          new THREE.Float32BufferAttribute(vertices, 3)
+        );
+
+        const material = new THREE.PointsMaterial({
+          color: 0x3949ab,
+          size: 2,
+          transparent: true,
+          opacity: 0.8,
+        });
+
+        particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+
+        camera.position.z = 500;
+
+        animate();
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        particles.rotation.x += 0.001;
+        particles.rotation.y += 0.002;
+
+        renderer.render(scene, camera);
+      }
+
+      initThree();
+
+      // Vanta.js removed due to CDN loading issues
+      // Using CSS animations instead
+      console.log("Vanta.js initialization skipped - using CSS animations");
+
+      // Initialize Lottie
+      lottie.loadAnimation({
+        container: document.getElementById("mission-lottie"),
+        renderer: "svg",
+        loop: true,
+        autoplay: true,
+        path: "https://assets9.lottiefiles.com/packages/lf20_V9t630.json", // Replace with your own Lottie animation
+      });
+
+      // Animate 'How We Work' section
+      gsap.from("#how-we-work .glass", {
+        scrollTrigger: {
+          trigger: "#how-we-work",
+          start: "top 80%",
+          end: "bottom 60%",
+          scrub: true,
+        },
+        y: 100,
+        opacity: 0,
+        stagger: 0.3,
+      });
+
+      // Initialize ScrollReveal
+      ScrollReveal().reveal(".hero-title", {
+        delay: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".hero-subtitle", {
+        delay: 400,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".hero-buttons", {
+        delay: 600,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".hero-info", {
+        delay: 800,
+        distance: "50px",
+        origin: "right",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".mission-section", {
+        delay: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".timeline-header", {
+        delay: 200,
+        distance: "50px",
+        origin: "top",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".timeline-item", {
+        interval: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".values-header", {
+        delay: 200,
+        distance: "50px",
+        origin: "top",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".value-card", {
+        interval: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".team-header", {
+        delay: 200,
+        distance: "50px",
+        origin: "top",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".team-card", {
+        interval: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal("#cta", {
+        delay: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      // GSAP Animations
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Navbar animation on scroll
+      gsap.to("#navbar", {
+        scrollTrigger: {
+          trigger: "#hero",
+          start: "bottom top",
+          end: "bottom top",
+          toggleActions: "play none none reverse",
+        },
+        backgroundColor: "rgba(0, 0, 0, 0.8)",
+        duration: 0.3,
+      });
+
+      // Value cards hover effect
+      const valueCards = document.querySelectorAll(".value-card");
+      valueCards.forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          gsap.to(card, {
+            y: -10,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, {
+            y: 0,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+      });
+
+      // Team cards hover effect
+      const teamCards = document.querySelectorAll(".team-card");
+      teamCards.forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          gsap.to(card, {
+            y: -10,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, {
+            y: 0,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+      });
+
+      // Timeline animation
+      const timelineItems = document.querySelectorAll(".timeline-item");
+      timelineItems.forEach((item, index) => {
+        gsap.fromTo(
+          item,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: index * 0.2,
+            scrollTrigger: {
+              trigger: item,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      });
+
+      // Mobile menu toggle with enhanced functionality
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      let isMenuOpen = false;
+
+      console.log("Mobile menu elements:", { mobileMenuBtn, mobileMenu });
+
+      // Enhanced mobile menu toggle with animation
+      if (mobileMenuBtn && mobileMenu) {
+        console.log("Mobile menu elements found, adding event listener");
+        mobileMenuBtn.addEventListener("click", (e) => {
+          console.log("Mobile menu button clicked!");
+          e.preventDefault();
+          e.stopPropagation();
+          
+          isMenuOpen = !isMenuOpen;
+          console.log("Menu state:", isMenuOpen);
+          
+          if (isMenuOpen) {
+            mobileMenu.classList.remove("hidden");
+            // Add smooth slide-down animation
+            gsap.fromTo(mobileMenu, 
+              { opacity: 0, y: -20 },
+              { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
+            );
+          } else {
+            // Add smooth slide-up animation
+            gsap.to(mobileMenu, {
+              opacity: 0,
+              y: -20,
+              duration: 0.3,
+              ease: "power2.in",
+              onComplete: () => {
+                mobileMenu.classList.add("hidden");
+              }
+            });
+          }
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener("click", (e) => {
+          if (isMenuOpen && !mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            isMenuOpen = false;
+            gsap.to(mobileMenu, {
+              opacity: 0,
+              y: -20,
+              duration: 0.3,
+              ease: "power2.in",
+              onComplete: () => {
+                mobileMenu.classList.add("hidden");
+              }
+            });
+          }
+        });
+      } else {
+        console.error("Mobile menu elements not found!", {
+          mobileMenuBtn: !!mobileMenuBtn,
+          mobileMenu: !!mobileMenu
+        });
+      }
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 80,
+              behavior: "smooth",
+            });
+            // Close mobile menu if open with animation
+            if (isMenuOpen && mobileMenu) {
+              isMenuOpen = false;
+              gsap.to(mobileMenu, {
+                opacity: 0,
+                y: -20,
+                duration: 0.3,
+                ease: "power2.in",
+                onComplete: () => {
+                  mobileMenu.classList.add("hidden");
+                }
+              });
+            }
+          }
+        });
+      });
+
+      // Back to top functionality
+      const backToTop = document.getElementById("backToTop");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      });
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Window resize handler for Three.js
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    </script>
+  </body>
+</html>

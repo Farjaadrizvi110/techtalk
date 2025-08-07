@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Contact Tech Talk Solution - Premier restaurant support services provider with comprehensive resources and tools"
+    />
+    <meta
+      name="keywords"
+      content="contact, restaurant support, restaurant management, virtual assistance, order picking, AI solutions, EPOS systems"
+    />
+    <meta name="author" content="Tech Talk Solution" />
+
+    <title>Contact & Resources | Tech Talk Solution</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "primary-dark": "#0a0e27",
+              "accent-red": "#de232a",
+              "accent-pink": "#f19fac",
+              "text-light": "#f5f5f5",
+              "text-muted": "#b0bec5",
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
+
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <!-- ScrollReveal -->
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+
+    <!-- Vanta.js -->
+    <!-- Vanta.js removed due to CDN loading issues - using CSS animations instead -->
+
+    <!-- Lottie -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
+    <!-- Shery.js -->
+    <!-- Shery.js removed due to CDN loading issues - using CSS animations instead -->
+
+    <!-- Parallax.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Custom styles -->
+    <style>
+      /* Color theme matching techtalksolution.co.uk */
+      :root {
+        --primary-dark: #0a0e27; /* A deep, rich blue-black for better contrast */
+        --accent-red: #de232a; /* The vibrant red from user */
+        --accent-pink: #f19fac; /* The soft pink from user */
+        --text-light: #f5f5f5;
+        --text-muted: #b0bec5;
+      }
+
+      body {
+        background-color: var(--primary-dark);
+        background-image: url("https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+        color: var(--text-light);
+      }
+
+      /* Custom animations */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .floating {
+        animation: float 4s ease-in-out infinite;
+      }
+
+      /* Gradient text */
+      .gradient-text {
+        background: linear-gradient(
+          90deg,
+          var(--accent-red),
+          var(--accent-pink)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Glassmorphism effect */
+      .glass {
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(222, 35, 42, 0.3);
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--primary-dark);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--accent-red);
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-pink);
+      }
+
+      /* Mobile menu button visibility */
+      #mobile-menu-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+      }
+
+      @media (min-width: 768px) {
+        #mobile-menu-btn {
+          display: none !important;
+        }
+      }
+
+      /* Mobile menu positioning */
+      #mobile-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      #mobile-menu.hidden {
+        display: none !important;
+      }
+
+      /* Ensure responsive behavior */
+      @media (max-width: 767px) {
+        .hidden.md\:flex {
+          display: none !important;
+        }
+      }
+
+      @media (min-width: 768px) {
+        #mobile-menu {
+          display: none !important;
+        }
+      }
+
+      /* Three.js canvas */
+      #three-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      /* Particles container */
+      #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      /* Form styles */
+      .form-input {
+        background: rgba(26, 35, 126, 0.3);
+        border: 1px solid rgba(57, 73, 171, 0.5);
+        transition: all 0.3s ease;
+      }
+
+      .form-input:focus {
+        border-color: var(--accent-blue);
+        box-shadow: 0 0 0 3px rgba(57, 73, 171, 0.3);
+        outline: none;
+      }
+
+      /* Resource card */
+      .resource-card {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .resource-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      .resource-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          rgba(57, 73, 171, 0.1),
+          rgba(229, 57, 53, 0.1)
+        );
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .resource-card:hover::before {
+        opacity: 1;
+      }
+
+      /* Category filter */
+      .category-filter {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 30px;
+      }
+
+      .filter-btn {
+        padding: 8px 16px;
+        background: rgba(26, 35, 126, 0.3);
+        border: 1px solid rgba(57, 73, 171, 0.5);
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: var(--accent-blue);
+        border-color: var(--accent-blue);
+      }
+
+      /* Button styles */
+      .btn-primary {
+        background-color: var(--accent-blue);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--accent-red);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        border: 2px solid var(--accent-blue);
+        transition: all 0.3s ease;
+      }
+
+      .btn-outline:hover {
+        border-color: var(--accent-red);
+        background-color: rgba(229, 57, 53, 0.1);
+      }
+
+      /* Icon colors */
+      .icon-blue {
+        color: var(--accent-blue);
+      }
+
+      .icon-red {
+        color: var(--accent-red);
+      }
+
+      /* Back to top button */
+      #backToTop {
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      #backToTop.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Form submission animation */
+      .form-success {
+        display: none;
+        padding: 15px;
+        background: rgba(76, 175, 80, 0.2);
+        border: 1px solid rgba(76, 175, 80, 0.5);
+        border-radius: 8px;
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      /* Loading animation */
+      .loader {
+        display: none;
+        width: 30px;
+        height: 30px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: var(--accent-blue);
+        animation: spin 1s ease-in-out infinite;
+        margin: 0 auto;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Resource search */
+      .search-container {
+        position: relative;
+        margin-bottom: 30px;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 12px 20px 12px 50px;
+        background: rgba(26, 35, 126, 0.3);
+        border: 1px solid rgba(57, 73, 171, 0.5);
+        border-radius: 30px;
+        color: var(--text-light);
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+
+      .search-input:focus {
+        border-color: var(--accent-blue);
+        box-shadow: 0 0 0 3px rgba(57, 73, 171, 0.3);
+        outline: none;
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-muted);
+      }
+
+      /* Swiper styles */
+      .swiper {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .swiper-pagination-bullet {
+        background: var(--accent-blue);
+        opacity: 0.5;
+      }
+
+      .swiper-pagination-bullet-active {
+        background: var(--accent-red);
+        opacity: 1;
+      }
+
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: var(--accent-blue);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen overflow-x-hidden">
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Three.js Container -->
+    <div id="three-container"></div>
+
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full z-50 glass py-3 md:py-4 px-4 md:px-6 transition-all duration-300"
+      id="navbar"
+    >
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <div
+            class="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-blue-600 to-red-600 rounded-lg flex items-center justify-center"
+          >
+            <i class="fas fa-utensils text-white text-sm md:text-base"></i>
+          </div>
+          <span class="text-lg md:text-xl font-bold text-white">Tech Talk Solution</span>
+        </div>
+
+        <div class="hidden md:flex space-x-6 lg:space-x-8">
+          <a
+            href="index.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Home</a
+          >
+          <a
+            href="about-us.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >About</a
+          >
+          <a
+            href="services.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Services</a
+          >
+          <a
+            href="why-choose-us.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Why Us</a
+          >
+          <a
+            href="Growth.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Growth Strategies
+          </a>
+          <a
+            href="contact.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Contact</a
+          >
+        </div>
+
+        <button class="md:hidden text-xl sm:text-2xl text-white p-2 sm:p-3 rounded-xl bg-black/20 shadow-lg hover:bg-black/30 transition-all duration-300 border border-red-500/30" id="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="hidden absolute top-full left-0 right-0 mt-2 mx-2 sm:mx-4 glass rounded-xl p-4 sm:p-6 shadow-2xl border border-red-500/30 z-50" id="mobile-menu">
+        <a href="index.html" class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >🏠 Home</a
+        >
+        <a
+          href="about-us.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >👥 About</a
+        >
+        <a
+          href="services.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >🛠️ Services</a
+        >
+        <a
+          href="why-choose-us.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >⭐ Why Us</a
+        >
+        <a
+          href="Growth.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >💬 Growth Strategies</a
+        >
+        <a
+          href="contact.html"
+          class="block py-3 px-2 sm:px-3 text-white hover:text-red-400 transition-colors font-medium text-sm sm:text-base"
+          >Contact</a
+        >
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="hero"
+      class="pt-32 pb-20 px-6 min-h-screen flex items-center relative"
+    >
+      <div
+        class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10"
+      >
+        <div class="space-y-6">
+          <h1 class="text-4xl md:text-6xl font-bold hero-title">
+            Contact & <span class="gradient-text">Resources</span>
+          </h1>
+          <p class="text-lg text-gray-300 max-w-lg hero-subtitle">
+            Get in touch with our team or explore our comprehensive library of
+            restaurant management solutions and tools.
+          </p>
+          <div class="flex flex-wrap gap-4 hero-buttons">
+            <a
+              href="#contact-form"
+              class="px-6 py-3 btn-primary rounded-lg font-medium inline-block"
+            >
+              Contact Us
+            </a>
+            <a
+              href="#resources"
+              class="px-6 py-3 btn-outline rounded-lg font-medium inline-block"
+            >
+              Browse Resources
+            </a>
+          </div>
+        </div>
+
+        <div class="glass rounded-2xl p-8 hero-info floating">
+          <h3 class="text-2xl font-bold mb-6">Quick Links</h3>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <i class="fas fa-map-marker-alt icon-blue text-xl mr-4"></i>
+              <div>
+                <h4 class="font-semibold">Location</h4>
+                <p class="text-gray-300">
+                  1A Edmundson Street, Blackburn, BB2 1HL
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-center">
+              <i class="fas fa-phone-alt icon-blue text-xl mr-4"></i>
+              <div>
+                <h4 class="font-semibold">Phone</h4>
+                <p class="text-gray-300">01254 961661</p>
+              </div>
+            </div>
+
+            <div class="flex items-center">
+              <i class="fas fa-envelope icon-blue text-xl mr-4"></i>
+              <div>
+                <h4 class="font-semibold">Email</h4>
+                <p class="text-gray-300">info@techtalksolution.co</p>
+              </div>
+            </div>
+
+            <div class="flex items-center">
+              <i class="fas fa-clock icon-blue text-xl mr-4"></i>
+              <div>
+                <h4 class="font-semibold">Business Hours</h4>
+                <p class="text-gray-300">24/7 Support Available</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact-form" class="py-20 px-6 relative">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            Have questions or need assistance? Reach out to our team and we'll
+            get back to you as soon as possible.
+          </p>
+        </div>
+
+        <div class="glass rounded-2xl p-8 md:p-12">
+          <form id="contactForm" class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-gray-300 mb-2">Name</label>
+                <input
+                  type="text"
+                  class="w-full form-input rounded-lg px-4 py-3"
+                  required
+                />
+              </div>
+
+              <div>
+                <label class="block text-gray-300 mb-2">Email</label>
+                <input
+                  type="email"
+                  class="w-full form-input rounded-lg px-4 py-3"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-gray-300 mb-2">Subject</label>
+              <input
+                type="text"
+                class="w-full form-input rounded-lg px-4 py-3"
+                required
+              />
+            </div>
+
+            <div>
+              <label class="block text-gray-300 mb-2">Message</label>
+              <textarea
+                rows="5"
+                class="w-full form-input rounded-lg px-4 py-3"
+                required
+              ></textarea>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                class="w-full px-6 py-3 btn-primary rounded-lg font-medium"
+              >
+                Send Message
+              </button>
+            </div>
+
+            <div class="loader" id="formLoader"></div>
+            <div class="form-success" id="formSuccess">
+              <i class="fas fa-check-circle text-green-500 text-2xl mb-2"></i>
+              <p>Thank you for your message! We'll get back to you soon.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="py-20 px-6 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Restaurant Management Solutions
+          </h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            Explore our curated library of tools and systems designed
+            specifically for restaurant operations and management
+          </p>
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="mb-12">
+          <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search solutions..."
+              id="resourceSearch"
+            />
+          </div>
+
+          <div class="category-filter">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="management">
+              Management
+            </button>
+            <button class="filter-btn" data-category="assistance">
+              Assistance
+            </button>
+            <button class="filter-btn" data-category="ai">AI Solutions</button>
+            <button class="filter-btn" data-category="epos">
+              EPOS Systems
+            </button>
+          </div>
+        </div>
+
+        <!-- Featured Solutions -->
+        <div class="mb-16">
+          <h3 class="text-2xl font-bold mb-8">Featured Solutions</h3>
+
+          <div class="swiper featuredSwiper mb-8">
+            <div class="swiper-wrapper">
+              <!-- Featured Solution 1 -->
+              <div class="swiper-slide">
+                <div
+                  class="glass p-8 rounded-2xl resource-card max-w-md mx-auto"
+                >
+                  <div
+                    class="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center mx-auto mb-6"
+                  >
+                    <i class="fas fa-clipboard-list text-2xl text-white"></i>
+                  </div>
+                  <h3 class="text-xl font-bold mb-3 text-center">
+                    Restaurant Management
+                  </h3>
+                  <p class="text-gray-300 mb-4">
+                    Comprehensive systems for efficient restaurant operations
+                  </p>
+                  <div class="flex justify-center space-x-3 mb-4">
+                    <span class="px-3 py-1 bg-blue-900/50 rounded-full text-sm"
+                      >Management</span
+                    >
+                    <span class="px-3 py-1 bg-blue-900/50 rounded-full text-sm"
+                      >Operations</span
+                    >
+                  </div>
+                  <a
+                    href="Growth.html"
+                    class="flex items-center justify-center text-blue-400 hover:text-blue-300"
+                  >
+                    Learn More <i class="fas fa-arrow-right ml-2"></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Featured Solution 2 -->
+              <div class="swiper-slide">
+                <div
+                  class="glass p-8 rounded-2xl resource-card max-w-md mx-auto"
+                >
+                  <div
+                    class="w-16 h-16 bg-gradient-to-r from-purple-600 to-purple-800 rounded-lg flex items-center justify-center mx-auto mb-6"
+                  >
+                    <i class="fas fa-headset text-2xl text-white"></i>
+                  </div>
+                  <h3 class="text-xl font-bold mb-3 text-center">
+                    Virtual Assistance
+                  </h3>
+                  <p class="text-gray-300 mb-4">
+                    AI-powered virtual assistants for customer service
+                  </p>
+                  <div class="flex justify-center space-x-3 mb-4">
+                    <span
+                      class="px-3 py-1 bg-purple-900/50 rounded-full text-sm"
+                      >Assistance</span
+                    >
+                    <span
+                      class="px-3 py-1 bg-purple-900/50 rounded-full text-sm"
+                      >AI</span
+                    >
+                  </div>
+                  <a
+                    href="Growth.html"
+                    class="flex items-center justify-center text-blue-400 hover:text-blue-300"
+                  >
+                    Learn More <i class="fas fa-arrow-right ml-2"></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Featured Solution 3 -->
+              <div class="swiper-slide">
+                <div
+                  class="glass p-8 rounded-2xl resource-card max-w-md mx-auto"
+                >
+                  <div
+                    class="w-16 h-16 bg-gradient-to-r from-red-600 to-red-800 rounded-lg flex items-center justify-center mx-auto mb-6"
+                  >
+                    <i class="fas fa-robot text-2xl text-white"></i>
+                  </div>
+                  <h3 class="text-xl font-bold mb-3 text-center">
+                    AI Solutions
+                  </h3>
+                  <p class="text-gray-300 mb-4">
+                    Intelligent systems for predictive analytics and automation
+                  </p>
+                  <div class="flex justify-center space-x-3 mb-4">
+                    <span class="px-3 py-1 bg-red-900/50 rounded-full text-sm"
+                      >AI</span
+                    >
+                    <span class="px-3 py-1 bg-red-900/50 rounded-full text-sm"
+                      >Analytics</span
+                    >
+                  </div>
+                  <a
+                    href="Growth.html"
+                    class="flex items-center justify-center text-blue-400 hover:text-blue-300"
+                  >
+                    Learn More <i class="fas fa-arrow-right ml-2"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+
+        <!-- All Solutions Grid -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          id="resourcesGrid"
+        >
+          <!-- Solution cards will be dynamically inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 px-6 relative">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Frequently Asked Questions
+          </h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            Find answers to common questions about our services and solutions
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="glass rounded-2xl p-6">
+            <div
+              class="flex justify-between items-center cursor-pointer faq-question"
+            >
+              <h3 class="text-xl font-semibold">
+                What restaurant management solutions do you offer?
+              </h3>
+              <i class="fas fa-chevron-down text-blue-400"></i>
+            </div>
+            <div class="faq-answer hidden mt-4 text-gray-300">
+              <p>
+                We offer comprehensive restaurant management solutions including
+                inventory management, staff scheduling, table reservation
+                systems, and customer relationship management. Our solutions are
+                designed to streamline operations and improve efficiency.
+              </p>
+            </div>
+          </div>
+
+          <div class="glass rounded-2xl p-6">
+            <div
+              class="flex justify-between items-center cursor-pointer faq-question"
+            >
+              <h3 class="text-xl font-semibold">
+                How does virtual assistance work for restaurants?
+              </h3>
+              <i class="fas fa-chevron-down text-blue-400"></i>
+            </div>
+            <div class="faq-answer hidden mt-4 text-gray-300">
+              <p>
+                Our virtual assistance solutions use AI-powered chatbots and
+                virtual assistants to handle customer inquiries, take orders,
+                and provide support 24/7. This reduces the need for additional
+                staff while maintaining high-quality customer service.
+              </p>
+            </div>
+          </div>
+
+          <div class="glass rounded-2xl p-6">
+            <div
+              class="flex justify-between items-center cursor-pointer faq-question"
+            >
+              <h3 class="text-xl font-semibold">
+                Can your AI solutions integrate with existing systems?
+              </h3>
+              <i class="fas fa-chevron-down text-blue-400"></i>
+            </div>
+            <div class="faq-answer hidden mt-4 text-gray-300">
+              <p>
+                Yes, our AI solutions are designed to seamlessly integrate with
+                existing restaurant management systems, EPOS platforms, and
+                other software. We provide custom integration services to ensure
+                compatibility and smooth data flow between systems.
+              </p>
+            </div>
+          </div>
+
+          <div class="glass rounded-2xl p-6">
+            <div
+              class="flex justify-between items-center cursor-pointer faq-question"
+            >
+              <h3 class="text-xl font-semibold">
+                What EPOS systems do you support?
+              </h3>
+              <i class="fas fa-chevron-down text-blue-400"></i>
+            </div>
+            <div class="faq-answer hidden mt-4 text-gray-300">
+              <p>
+                We support a wide range of EPOS systems including TouchBistro,
+                Lightspeed, Toast, Square, and many others. Our solutions can
+                integrate with most major EPOS platforms to provide enhanced
+                functionality and data insights.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section id="newsletter" class="py-20 px-6 relative">
+      <div class="max-w-4xl mx-auto glass rounded-2xl p-8 md:p-12 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Stay Updated</h2>
+        <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+          Subscribe to our newsletter to receive updates on new solutions,
+          industry insights, and exclusive content.
+        </p>
+
+        <form class="max-w-md mx-auto">
+          <div class="flex">
+            <input
+              type="email"
+              placeholder="Your email address"
+              class="flex-grow form-input rounded-l-lg px-4 py-3 focus:outline-none"
+            />
+            <button
+              type="submit"
+              class="px-6 py-3 btn-primary rounded-r-lg font-medium"
+            >
+              Subscribe
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 px-6 border-t border-gray-800">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <div class="flex items-center space-x-2">
+              <div
+                class="w-8 h-8 bg-gradient-to-r from-blue-600 to-red-600 rounded-lg flex items-center justify-center"
+              >
+                <i class="fas fa-utensils text-white"></i>
+              </div>
+              <span class="text-xl font-bold">Tech Talk Solution</span>
+            </div>
+            <p class="text-gray-500 mt-2">Restaurant Support Services</p>
+          </div>
+
+          <div class="flex space-x-6">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-blue-400 transition-colors"
+            >
+              <i class="fab fa-facebook text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-blue-400 transition-colors"
+            >
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-blue-400 transition-colors"
+            >
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-blue-400 transition-colors"
+            >
+              <i class="fab fa-linkedin text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-blue-400 transition-colors"
+            >
+              <i class="fab fa-github text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-10 text-center text-gray-500 text-sm">
+          <p>© 2023 Tech Talk Solution. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button
+      id="backToTop"
+      class="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-blue-600 to-red-600 rounded-full flex items-center justify-center shadow-lg z-50"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <script>
+      // Initialize tsParticles
+      tsParticles.load("particles-js", {
+        particles: {
+          number: {
+            value: 80,
+            density: {
+              enable: true,
+              value_area: 800,
+            },
+          },
+          color: {
+            value: "#3949ab",
+          },
+          shape: {
+            type: "circle",
+          },
+          opacity: {
+            value: 0.5,
+            random: true,
+          },
+          size: {
+            value: 3,
+            random: true,
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+          },
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "repulse",
+            },
+            onclick: {
+              enable: true,
+              mode: "push",
+            },
+            resize: true,
+          },
+        },
+        retina_detect: true,
+      });
+
+      // Initialize Three.js
+      let scene, camera, renderer, particles;
+
+      function initThree() {
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(
+          75,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          1000
+        );
+
+        renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document
+          .getElementById("three-container")
+          .appendChild(renderer.domElement);
+
+        // Create particles
+        const geometry = new THREE.BufferGeometry();
+        const vertices = [];
+
+        for (let i = 0; i < 500; i++) {
+          vertices.push(
+            Math.random() * 2000 - 1000,
+            Math.random() * 2000 - 1000,
+            Math.random() * 2000 - 1000
+          );
+        }
+
+        geometry.setAttribute(
+          "position",
+          new THREE.Float32BufferAttribute(vertices, 3)
+        );
+
+        const material = new THREE.PointsMaterial({
+          color: 0x3949ab,
+          size: 2,
+          transparent: true,
+          opacity: 0.8,
+        });
+
+        particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+
+        camera.position.z = 500;
+
+        animate();
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        particles.rotation.x += 0.001;
+        particles.rotation.y += 0.002;
+
+        renderer.render(scene, camera);
+      }
+
+      initThree();
+
+      // Initialize Vanta.js if available
+      if (typeof VANTA !== "undefined") {
+        VANTA.WAVES({
+          el: "#hero",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          scale: 1.0,
+          scaleMobile: 1.0,
+          color: 0x0a0e27,
+          shininess: 30.0,
+          waveHeight: 10.0,
+          waveSpeed: 0.75,
+          zoom: 0.75,
+        });
+      }
+
+      // Initialize ScrollReveal
+      ScrollReveal().reveal(".hero-title", {
+        delay: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".hero-subtitle", {
+        delay: 400,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".hero-buttons", {
+        delay: 600,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".hero-info", {
+        delay: 800,
+        distance: "50px",
+        origin: "right",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal("#contact-form", {
+        delay: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal("#resources", {
+        delay: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal("#faq", {
+        delay: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal("#newsletter", {
+        delay: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      // GSAP Animations
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Navbar animation on scroll
+      gsap.to("#navbar", {
+        scrollTrigger: {
+          trigger: "#hero",
+          start: "bottom top",
+          end: "bottom top",
+          toggleActions: "play none none reverse",
+        },
+        backgroundColor: "rgba(10, 14, 39, 0.9)",
+        duration: 0.3,
+      });
+
+      // Form input animations
+      const formInputs = document.querySelectorAll(".form-input");
+      formInputs.forEach((input) => {
+        input.addEventListener("focus", () => {
+          gsap.to(input, {
+            scale: 1.02,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+
+        input.addEventListener("blur", () => {
+          gsap.to(input, {
+            scale: 1,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+      });
+
+      // Resource cards hover effect
+      const resourceCards = document.querySelectorAll(".resource-card");
+      resourceCards.forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          gsap.to(card, {
+            y: -10,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, {
+            y: 0,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+      });
+
+      // FAQ accordion
+      const faqQuestions = document.querySelectorAll(".faq-question");
+      faqQuestions.forEach((question) => {
+        question.addEventListener("click", () => {
+          const answer = question.nextElementSibling;
+          const icon = question.querySelector("i");
+
+          answer.classList.toggle("hidden");
+          icon.classList.toggle("fa-chevron-down");
+          icon.classList.toggle("fa-chevron-up");
+        });
+      });
+
+      // Form submission
+      const contactForm = document.getElementById("contactForm");
+      const formLoader = document.getElementById("formLoader");
+      const formSuccess = document.getElementById("formSuccess");
+
+      contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // Show loader
+        formLoader.style.display = "block";
+
+        // Simulate form submission
+        setTimeout(() => {
+          formLoader.style.display = "none";
+          formSuccess.style.display = "block";
+          contactForm.reset();
+
+          // Hide success message after 5 seconds
+          setTimeout(() => {
+            formSuccess.style.display = "none";
+          }, 5000);
+        }, 2000);
+      });
+
+      // Resources data
+      const resources = [
+        {
+          name: "Restaurant Management System",
+          description:
+            "Comprehensive platform for managing all restaurant operations efficiently",
+          category: "management",
+          icon: "fa-clipboard-list",
+          color: "blue",
+          url: "#",
+        },
+        {
+          name: "Virtual Assistant Platform",
+          description:
+            "AI-powered virtual assistants for 24/7 customer service and support",
+          category: "assistance",
+          icon: "fa-headset",
+          color: "purple",
+          url: "#",
+        },
+        {
+          name: "Order Picking Solution",
+          description:
+            "Automated order management system for efficient order processing",
+          category: "management",
+          icon: "fa-shopping-cart",
+          color: "blue",
+          url: "#",
+        },
+        {
+          name: "AI Customer Analytics",
+          description:
+            "Intelligent analytics for customer behavior and preferences",
+          category: "ai",
+          icon: "fa-brain",
+          color: "red",
+          url: "#",
+        },
+        {
+          name: "EPOS Integration Suite",
+          description:
+            "Seamless integration with major EPOS systems and payment processors",
+          category: "epos",
+          icon: "fa-cash-register",
+          color: "blue",
+          url: "#",
+        },
+        {
+          name: "Inventory Management",
+          description:
+            "Real-time inventory tracking and automated reordering system",
+          category: "management",
+          icon: "fa-boxes",
+          color: "purple",
+          url: "#",
+        },
+        {
+          name: "Staff Scheduling Tool",
+          description:
+            "Optimize staff schedules and reduce labor costs effectively",
+          category: "management",
+          icon: "fa-calendar-alt",
+          color: "red",
+          url: "#",
+        },
+        {
+          name: "Table Reservation System",
+          description:
+            "Online booking system with real-time availability updates",
+          category: "assistance",
+          icon: "fa-chair",
+          color: "blue",
+          url: "#",
+        },
+        {
+          name: "Customer Loyalty Program",
+          description:
+            "Build customer loyalty with personalized rewards and offers",
+          category: "ai",
+          icon: "fa-heart",
+          color: "purple",
+          url: "#",
+        },
+        {
+          name: "Menu Management System",
+          description:
+            "Digital menu management with pricing and nutritional information",
+          category: "epos",
+          icon: "fa-utensils",
+          color: "red",
+          url: "#",
+        },
+        {
+          name: "Kitchen Display System",
+          description:
+            "Digital kitchen display for efficient order preparation",
+          category: "assistance",
+          icon: "fa-tv",
+          color: "blue",
+          url: "#",
+        },
+        {
+          name: "Supply Chain Management",
+          description:
+            "Streamline supply chain operations and vendor management",
+          category: "management",
+          icon: "fa-truck",
+          color: "purple",
+          url: "#",
+        },
+        {
+          name: "Customer Feedback System",
+          description:
+            "Collect and analyze customer feedback for continuous improvement",
+          category: "ai",
+          icon: "fa-comment-dots",
+          color: "red",
+          url: "#",
+        },
+      ];
+
+      // Render resources
+      function renderResources(resourcesToRender) {
+        const resourcesGrid = document.getElementById("resourcesGrid");
+        resourcesGrid.innerHTML = "";
+
+        resourcesToRender.forEach((resource) => {
+          const card = document.createElement("div");
+          card.className = "glass p-8 rounded-2xl resource-card";
+          card.innerHTML = `
+                    <div class="w-16 h-16 bg-gradient-to-r from-${resource.color}-600 to-${resource.color}-800 rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <i class="fas ${resource.icon} text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-center">${resource.name}</h3>
+                    <p class="text-gray-300 mb-4">${resource.description}</p>
+                    <div class="flex justify-center space-x-3 mb-4">
+                        <span class="px-3 py-1 bg-${resource.color}-900/50 rounded-full text-sm">${resource.category}</span>
+                    </div>
+                    <a href="Growth.html" class="flex items-center justify-center text-blue-400 hover:text-blue-300">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                `;
+          resourcesGrid.appendChild(card);
+        });
+      }
+
+      // Initial render
+      renderResources(resources);
+
+      // Filter functionality
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const searchInput = document.getElementById("resourceSearch");
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          // Update active button
+          filterButtons.forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+
+          // Filter resources
+          const category = button.getAttribute("data-category");
+          if (category === "all") {
+            renderResources(resources);
+          } else {
+            const filteredResources = resources.filter(
+              (resource) => resource.category === category
+            );
+            renderResources(filteredResources);
+          }
+        });
+      });
+
+      // Search functionality
+      searchInput.addEventListener("input", (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const filteredResources = resources.filter(
+          (resource) =>
+            resource.name.toLowerCase().includes(searchTerm) ||
+            resource.description.toLowerCase().includes(searchTerm) ||
+            resource.category.toLowerCase().includes(searchTerm)
+        );
+        renderResources(filteredResources);
+      });
+
+      // Initialize Swiper for featured resources
+      const featuredSwiper = new Swiper(".featuredSwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+          640: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+        },
+      });
+
+      // Mobile menu toggle with enhanced functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        let isMenuOpen = false;
+
+        // Function to close mobile menu
+        function closeMobileMenu() {
+          if (isMenuOpen && mobileMenu) {
+            isMenuOpen = false;
+            if (typeof gsap !== "undefined") {
+              gsap.to(mobileMenu, {
+                opacity: 0,
+                y: -20,
+                duration: 0.3,
+                ease: "power2.in",
+                onComplete: () => {
+                  mobileMenu.classList.add("hidden");
+                },
+              });
+            } else {
+              mobileMenu.classList.add("hidden");
+            }
+          }
+        }
+
+        // Close mobile menu on window resize if screen becomes large
+        window.addEventListener("resize", () => {
+          if (window.innerWidth >= 768) {
+            closeMobileMenu();
+          }
+        });
+
+        // Enhanced mobile menu toggle with animation
+        console.log("Mobile menu elements found:", {
+          mobileMenuBtn: !!mobileMenuBtn,
+          mobileMenu: !!mobileMenu,
+        });
+
+        if (mobileMenuBtn && mobileMenu) {
+          console.log("Setting up mobile menu event listener");
+          mobileMenuBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            console.log("Mobile menu button clicked, isMenuOpen:", isMenuOpen);
+            console.log("Mobile menu current classes:", mobileMenu.className);
+
+            if (!isMenuOpen) {
+              // Open menu
+              isMenuOpen = true;
+              mobileMenu.classList.remove("hidden");
+              // Reset styles for proper display
+              mobileMenu.style.opacity = "1";
+              mobileMenu.style.transform = "translateY(0)";
+              // Add smooth slide-down animation with fallback
+              if (typeof gsap !== "undefined") {
+                gsap.fromTo(
+                  mobileMenu,
+                  { opacity: 0, y: -20 },
+                  { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
+                );
+              }
+            } else {
+              // Close menu
+              closeMobileMenu();
+            }
+          });
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener("click", (e) => {
+          if (
+            isMenuOpen &&
+            !mobileMenu.contains(e.target) &&
+            !mobileMenuBtn.contains(e.target)
+          ) {
+            closeMobileMenu();
+          }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              window.scrollTo({
+                top: target.offsetTop - 80,
+                behavior: "smooth",
+              });
+              // Close mobile menu if open with animation
+              if (isMenuOpen && mobileMenu) {
+                closeMobileMenu();
+              }
+            }
+          });
+        });
+      }); // End of DOMContentLoaded
+
+      // Back to top functionality
+      const backToTop = document.getElementById("backToTop");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      });
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Window resize handler for Three.js
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    </script>
+  </body>
+</html>

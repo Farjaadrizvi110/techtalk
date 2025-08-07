@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Why Choose Tech Talk Solution - Discover the unique advantages and benefits of our restaurant support services"
+    />
+    <meta
+      name="keywords"
+      content="restaurant support, why choose us, benefits, advantages, restaurant technology, customer service"
+    />
+    <meta name="author" content="Tech Talk Solution" />
+
+    <title>Why Choose Us | Tech Talk Solution</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
+
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <!-- ScrollReveal -->
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+
+    <!-- Vanta.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta.js/0.5.24/vanta.waves.min.js"></script>
+
+    <!-- Lottie -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
+    <!-- Shery.js -->
+    <script src="https://cdn.jsdelivr.net/gh/PradhyumnaNaik/Shery.js@master/shery.min.js"></script>
+
+    <!-- Parallax.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
+    <!-- Custom styles -->
+    <style>
+      /* Color theme matching techtalksolution.co.uk */
+      :root {
+        --primary-dark: #0a0e27; /* A deep, rich blue-black for better contrast */
+        --accent-red: #de232a; /* The vibrant red from user */
+        --accent-pink: #f19fac; /* The soft pink from user */
+        --text-light: #f5f5f5;
+        --text-muted: #b0bec5;
+      }
+
+      body {
+        background-color: var(--primary-dark);
+        background-image: url("https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+        color: var(--text-light);
+      }
+
+      /* Custom animations */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .floating {
+        animation: float 4s ease-in-out infinite;
+      }
+
+      /* Gradient text */
+      .gradient-text {
+        background: linear-gradient(
+          90deg,
+          var(--accent-red),
+          var(--accent-pink)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Glassmorphism effect */
+      .glass {
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(222, 35, 42, 0.3);
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--primary-dark);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--accent-red);
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-pink);
+      }
+
+      /* Service card hover effect */
+      .service-card {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          rgba(222, 35, 42, 0.1),
+          rgba(241, 159, 172, 0.1)
+        );
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .service-card:hover::before {
+        opacity: 1;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      /* Counter */
+      .counter {
+        display: inline-block;
+      }
+
+      /* Back to top button */
+      #backToTop {
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      #backToTop.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Three.js canvas */
+      #three-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      /* Particles container */
+      #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      /* Lottie container */
+      .lottie-container {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+      }
+
+      /* Parallax layers */
+      .parallax-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Shery effect */
+      .shery-effect {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .shery-effect img {
+        transition: transform 0.3s ease;
+      }
+
+      /* Gooey effect */
+      .gooey {
+        filter: url("#goo");
+      }
+
+      /* Button styles */
+      .btn-primary {
+        background-color: var(--accent-red);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--accent-pink);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        border: 2px solid var(--accent-red);
+        transition: all 0.3s ease;
+      }
+
+      .btn-outline:hover {
+        border-color: var(--accent-pink);
+        background-color: rgba(241, 159, 172, 0.1);
+      }
+
+      /* Icon colors */
+      .icon-red {
+        color: var(--accent-red);
+      }
+
+      .icon-pink {
+        color: var(--accent-pink);
+      }
+
+      /* Feature card */
+      .feature-card {
+        transition: all 0.3s ease;
+        border-radius: 1rem;
+        overflow: hidden;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+      }
+
+      /* Timeline */
+      .timeline-container {
+        position: relative;
+      }
+
+      .timeline-container::before {
+        content: "";
+        position: absolute;
+        width: 4px;
+        background: linear-gradient(
+          to bottom,
+          var(--accent-red),
+          var(--accent-pink)
+        );
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -2px;
+      }
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 2rem;
+      }
+
+      .timeline-content {
+        position: relative;
+        width: calc(50% - 2rem);
+      }
+
+      .timeline-item:nth-child(odd) .timeline-content {
+        margin-left: auto;
+      }
+
+      .timeline-dot {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: var(--accent-red);
+        border-radius: 50%;
+        top: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+      }
+
+      @media (max-width: 768px) {
+        .timeline-container::before {
+          left: 2rem;
+        }
+
+        .timeline-content {
+          width: calc(100% - 4rem);
+          margin-left: 4rem !important;
+        }
+
+        .timeline-dot {
+          left: 2rem;
+        }
+      }
+
+      /* Stats counter */
+      .stat-counter {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(
+          90deg,
+          var(--accent-red),
+          var(--accent-pink)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Video container */
+      .video-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1rem;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      /* Testimonial card */
+      .testimonial-card {
+        transition: all 0.3s ease;
+      }
+
+      .testimonial-card:hover {
+        transform: scale(1.03);
+      }
+
+      /* Image gallery */
+      .gallery-item {
+        overflow: hidden;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-item img {
+        transition: transform 0.5s ease;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen overflow-x-hidden">
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Three.js Container -->
+    <div id="three-container"></div>
+
+    <!-- SVG for gooey effect -->
+    <svg style="display: none">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix
+            in="blur"
+            mode="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+            result="goo"
+          />
+          <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+        </filter>
+      </defs>
+    </svg>
+
+    <!-- Navigation -->
+
+    <nav
+      class="fixed w-full z-50 glass py-3 md:py-4 px-4 md:px-6 transition-all duration-300"
+      id="navbar"
+    >
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <div
+            class="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-blue-600 to-red-600 rounded-lg flex items-center justify-center"
+          >
+            <i class="fas fa-utensils text-white text-sm md:text-base"></i>
+          </div>
+          <span class="text-lg md:text-xl font-bold text-white">Tech Talk Solution</span>
+        </div>
+
+        <div class="hidden md:flex space-x-6 lg:space-x-8">
+          <a
+            href="index.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Home</a
+          >
+          <a
+            href="about-us.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >About</a
+          >
+          <a
+            href="services.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Services</a
+          >
+          <a
+            href="why-choose-us.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Why Us</a
+          >
+          <a
+            href="Growth.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Growth Strategies
+          </a>
+          <a
+            href="contact.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Contact</a
+          >
+        </div>
+
+        <button class="md:hidden text-xl sm:text-2xl text-white p-2 sm:p-3 rounded-xl bg-black/20 shadow-lg hover:bg-black/30 transition-all duration-300 border border-red-500/30" id="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="hidden absolute top-full left-0 right-0 mt-2 mx-2 sm:mx-4 glass rounded-xl p-4 sm:p-6 shadow-2xl border border-red-500/30 z-50" id="mobile-menu">
+        <a href="index.html" class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >🏠 Home</a
+        >
+        <a
+          href="about-us.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >👥 About</a
+        >
+        <a
+          href="services.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >🛠️ Services</a
+        >
+        <a
+          href="why-choose-us.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >⭐ Why Us</a
+        >
+        <a
+          href="Growth.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >💬 Growth Strategies</a
+        >
+        <a
+          href="contact.html"
+          class="block py-3 px-2 sm:px-3 text-white hover:text-red-400 transition-colors font-medium text-sm sm:text-base"
+          >Contact</a
+        >
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="hero"
+      class="pt-32 pb-20 px-6 min-h-[70vh] flex items-center relative"
+    >
+      <div class="parallax-container" data-relative-input="true">
+        <div class="parallax-layer" data-depth="0.5">
+          <div
+            class="absolute top-20 left-10 w-32 h-32 rounded-full bg-red-500/20 blur-3xl"
+          ></div>
+          <div
+            class="absolute bottom-20 right-10 w-40 h-40 rounded-full bg-pink-500/20 blur-3xl"
+          ></div>
+        </div>
+      </div>
+
+      <div
+        class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10"
+      >
+        <div class="space-y-6 glass p-8 rounded-xl">
+          <h1 class="text-4xl md:text-6xl font-bold hero-title">
+            Why <span class="gradient-text">Choose</span> Us
+          </h1>
+          <p class="text-lg md:text-xl text-gray-300 max-w-xl">
+            Discover the unique advantages that make Tech Talk Solution the
+            premier choice for restaurant support services. Our innovative
+            approach, dedicated team, and cutting-edge technology set us apart
+            from the competition.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="#benefits"
+              class="btn-primary px-6 py-3 rounded-lg text-white font-medium flex items-center gap-2"
+            >
+              <i class="fas fa-star"></i>
+              Explore Benefits
+            </a>
+            <a
+              href="contact.html"
+              class="btn-outline px-6 py-3 rounded-lg text-white font-medium flex items-center gap-2"
+            >
+              <i class="fas fa-phone"></i>
+              Contact Us
+            </a>
+          </div>
+        </div>
+        <div class="relative">
+          <img
+            src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+            alt="Restaurant Technology Support"
+            class="w-full h-auto rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-500 ease-in-out"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Benefits Section -->
+    <section id="benefits" class="py-20 px-6 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-5xl font-bold mb-6">
+            Key <span class="gradient-text">Benefits</span>
+          </h2>
+          <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+            Experience the Tech Talk Solution difference with these exclusive
+            benefits that help your restaurant thrive in today's competitive
+            market.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Benefit 1 -->
+          <div class="feature-card glass p-8 text-center">
+            <div class="mb-6 h-48 overflow-hidden rounded-lg">
+              <img
+                src="https://images.unsplash.com/photo-1556745757-8d76bdb6984b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1773&q=80"
+                alt="Increased Efficiency"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              />
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Increased Efficiency</h3>
+            <p class="text-gray-300">
+              Our streamlined processes and advanced technology solutions help
+              your restaurant operate more efficiently, saving time and
+              resources.
+            </p>
+          </div>
+
+          <!-- Benefit 2 -->
+          <div class="feature-card glass p-8 text-center">
+            <div class="mb-6 h-48 overflow-hidden rounded-lg">
+              <img
+                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+                alt="Enhanced Customer Experience - Professional Service Excellence"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <h3 class="text-2xl font-bold mb-4">
+              Enhanced Customer Experience
+            </h3>
+            <p class="text-gray-300">
+              Provide exceptional service to your customers with our
+              professional call answering and customer diversion services.
+            </p>
+          </div>
+
+          <!-- Benefit 3 -->
+          <div class="feature-card glass p-8 text-center">
+            <div class="mb-6 h-48 overflow-hidden rounded-lg">
+              <img
+                src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80"
+                alt="Revenue Growth - Business Success and Financial Performance"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Revenue Growth</h3>
+            <p class="text-gray-300">
+              Our targeted marketing strategies and social media management help
+              attract new customers and increase your restaurant's revenue.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Showcase Section -->
+    <section
+      class="py-20 px-6 relative"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+        background-color: rgba(0, 0, 0, 0.7);
+      "
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 glass p-8 rounded-xl">
+          <h2 class="text-3xl md:text-5xl font-bold mb-6">
+            See Us <span class="gradient-text">In Action</span>
+          </h2>
+          <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+            Watch how our services transform restaurant operations and deliver
+            exceptional results for our clients.
+          </p>
+        </div>
+
+        <div
+          class="video-container mx-auto max-w-4xl glass p-4 rounded-xl shadow-2xl"
+        >
+          <!-- Replace with your actual video -->
+          <div class="aspect-w-16 aspect-h-9">
+            <iframe
+              class="w-full h-[500px] rounded-lg"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="Tech Talk Solution Services"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="mt-4 p-4 text-center">
+            <h3 class="text-xl font-bold mb-2">
+              Restaurant Support Excellence
+            </h3>
+            <p class="text-gray-300">
+              See how we've helped restaurants across the UK improve their
+              operations and customer service.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Approach Section -->
+    <section class="py-20 px-6 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-5xl font-bold mb-6">
+            Our <span class="gradient-text">Approach</span>
+          </h2>
+          <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+            We follow a proven methodology to deliver exceptional results for
+            our restaurant clients.
+          </p>
+        </div>
+
+        <div class="timeline-container py-10">
+          <!-- Timeline Item 1 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div
+              class="timeline-content glass p-6 rounded-lg flex flex-col md:flex-row gap-6 items-center"
+            >
+              <div class="w-full md:w-1/3 h-48 overflow-hidden rounded-lg">
+                <img
+                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+                  alt="Understanding Phase - Business Analysis and Requirements Assessment"
+                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="w-full md:w-2/3">
+                <h3 class="text-2xl font-bold mb-2">1. Understand</h3>
+                <p class="text-gray-300">
+                  We begin by thoroughly understanding your restaurant's unique
+                  needs, challenges, and goals to create a tailored solution.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div
+              class="timeline-content glass p-6 rounded-lg flex flex-col md:flex-row gap-6 items-center"
+            >
+              <div class="w-full md:w-1/3 h-48 overflow-hidden rounded-lg">
+                <img
+                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+                  alt="Strategy Phase - Strategic Planning and Solution Development"
+                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="w-full md:w-2/3">
+                <h3 class="text-2xl font-bold mb-2">2. Strategize</h3>
+                <p class="text-gray-300">
+                  Our team develops a comprehensive strategy that addresses your
+                  specific requirements and aligns with your business
+                  objectives.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div
+              class="timeline-content glass p-6 rounded-lg flex flex-col md:flex-row gap-6 items-center"
+            >
+              <div class="w-full md:w-1/3 h-48 overflow-hidden rounded-lg">
+                <img
+                  src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+                  alt="Implementation Phase"
+                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                />
+              </div>
+              <div class="w-full md:w-2/3">
+                <h3 class="text-2xl font-bold mb-2">3. Implement</h3>
+                <p class="text-gray-300">
+                  We seamlessly implement our solutions with minimal disruption
+                  to your restaurant operations, ensuring a smooth transition.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 4 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div
+              class="timeline-content glass p-6 rounded-lg flex flex-col md:flex-row gap-6 items-center"
+            >
+              <div class="w-full md:w-1/3 h-48 overflow-hidden rounded-lg">
+                <img
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+                  alt="Optimization Phase - Performance Analytics and Continuous Improvement"
+                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="w-full md:w-2/3">
+                <h3 class="text-2xl font-bold mb-2">4. Optimize</h3>
+                <p class="text-gray-300">
+                  We continuously monitor performance and make data-driven
+                  adjustments to optimize results and maximize your return on
+                  investment.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section
+      class="py-20 px-6 relative"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+        background-color: rgba(0, 0, 0, 0.7);
+      "
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 glass p-8 rounded-xl">
+          <h2 class="text-3xl md:text-5xl font-bold mb-6">
+            Our <span class="gradient-text">Impact</span>
+          </h2>
+          <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+            The numbers speak for themselves. See the measurable impact our
+            services have on restaurant businesses.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-4 gap-8 text-center">
+          <!-- Stat 1 -->
+          <div
+            class="glass p-8 rounded-lg transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl"
+          >
+            <div class="text-4xl text-red-500 mb-4">
+              <i class="fas fa-heart"></i>
+            </div>
+            <div class="stat-counter text-5xl font-bold mb-2" id="stat1">
+              98%
+            </div>
+            <p class="text-lg font-medium">Customer Satisfaction</p>
+          </div>
+
+          <!-- Stat 2 -->
+          <div
+            class="glass p-8 rounded-lg transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl"
+          >
+            <div class="text-4xl text-red-500 mb-4">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="stat-counter text-5xl font-bold mb-2" id="stat2">
+              35%
+            </div>
+            <p class="text-lg font-medium">Average Revenue Increase</p>
+          </div>
+
+          <!-- Stat 3 -->
+          <div
+            class="glass p-8 rounded-lg transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl"
+          >
+            <div class="text-4xl text-red-500 mb-4">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <div class="stat-counter text-5xl font-bold mb-2" id="stat3">
+              200+
+            </div>
+            <p class="text-lg font-medium">Restaurants Served</p>
+          </div>
+
+          <!-- Stat 4 -->
+          <div
+            class="glass p-8 rounded-lg transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl"
+          >
+            <div class="text-4xl text-red-500 mb-4">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-counter text-5xl font-bold mb-2" id="stat4">
+              45%
+            </div>
+            <p class="text-lg font-medium">Time Saved on Operations</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section
+      class="py-20 px-6 relative"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+        background-color: rgba(0, 0, 0, 0.7);
+      "
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 glass p-8 rounded-xl">
+          <h2 class="text-3xl md:text-5xl font-bold mb-6">
+            Client <span class="gradient-text">Testimonials</span>
+          </h2>
+          <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+            Hear what our satisfied clients have to say about their experience
+            working with Tech Talk Solution.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Testimonial 1 -->
+          <div
+            class="testimonial-card glass p-8 rounded-lg transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl"
+          >
+            <div class="relative mb-8">
+              <div
+                class="absolute -top-4 -left-4 text-5xl text-red-500 opacity-50"
+              >
+                <i class="fas fa-quote-left"></i>
+              </div>
+              <div class="text-yellow-400 flex mb-4">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="text-gray-300 mb-6 relative z-10">
+                "Tech Talk Solution transformed our restaurant's operations.
+                Their call answering service has significantly improved our
+                customer service, and their marketing strategies have helped us
+                attract new customers."
+              </p>
+            </div>
+            <div class="flex items-center">
+              <div
+                class="w-16 h-16 rounded-full overflow-hidden mr-4 border-2 border-red-500"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+                  alt="John Smith"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <h4 class="font-bold text-xl">John Smith</h4>
+                <p class="text-sm text-gray-400">Owner, The Gourmet Kitchen</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div
+            class="testimonial-card glass p-8 rounded-lg transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl"
+          >
+            <div class="relative mb-8">
+              <div
+                class="absolute -top-4 -left-4 text-5xl text-red-500 opacity-50"
+              >
+                <i class="fas fa-quote-left"></i>
+              </div>
+              <div class="text-yellow-400 flex mb-4">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="text-gray-300 mb-6 relative z-10">
+                "The social media management service from Tech Talk Solution has
+                been a game-changer for our restaurant. Our online presence has
+                grown significantly, and we're seeing more engagement from our
+                customers."
+              </p>
+            </div>
+            <div class="flex items-center">
+              <div
+                class="w-16 h-16 rounded-full overflow-hidden mr-4 border-2 border-red-500"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+                  alt="Sarah Johnson - Manager at Fusion Bistro Restaurant"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div>
+                <h4 class="font-bold text-xl">Sarah Johnson</h4>
+                <p class="text-sm text-gray-400">Manager, Fusion Bistro</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div
+            class="testimonial-card glass p-8 rounded-lg transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl"
+          >
+            <div class="relative mb-8">
+              <div
+                class="absolute -top-4 -left-4 text-5xl text-red-500 opacity-50"
+              >
+                <i class="fas fa-quote-left"></i>
+              </div>
+              <div class="text-yellow-400 flex mb-4">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <p class="text-gray-300 mb-6 relative z-10">
+                "The EPOS integration service provided by Tech Talk Solution has
+                streamlined our operations and reduced errors. Their team was
+                professional and knowledgeable throughout the implementation
+                process."
+              </p>
+            </div>
+            <div class="flex items-center">
+              <div
+                class="w-16 h-16 rounded-full overflow-hidden mr-4 border-2 border-red-500"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+                  alt="Michael Brown"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <h4 class="font-bold text-xl">Michael Brown</h4>
+                <p class="text-sm text-gray-400">Owner, Seaside Grill</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Image Gallery Section -->
+    <section
+      class="py-20 px-6 relative"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+        background-color: rgba(0, 0, 0, 0.7);
+      "
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 glass p-8 rounded-xl">
+          <h2 class="text-3xl md:text-5xl font-bold mb-6">
+            Our <span class="gradient-text">Gallery</span>
+          </h2>
+          <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+            Take a visual tour of our work and see how we've helped restaurants
+            transform their operations.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <!-- Gallery Item 1 -->
+          <div
+            class="gallery-item aspect-square overflow-hidden rounded-xl glass p-2 transform transition-all duration-500 hover:scale-105 hover:shadow-2xl"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+              alt="Restaurant Interior - Modern Dining Space Design"
+              class="w-full h-full object-cover rounded-lg"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <!-- Gallery Item 2 -->
+          <div
+            class="gallery-item md:col-span-2 aspect-video overflow-hidden rounded-xl glass p-2 transform transition-all duration-500 hover:scale-105 hover:shadow-2xl"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+              alt="Restaurant Staff - Professional Team Service Excellence"
+              class="w-full h-full object-cover rounded-lg"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <!-- Gallery Item 3 -->
+          <div
+            class="gallery-item aspect-square overflow-hidden rounded-xl glass p-2 transform transition-all duration-500 hover:scale-105 hover:shadow-2xl"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+              alt="Restaurant Food - Gourmet Culinary Excellence"
+              class="w-full h-full object-cover rounded-lg"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <!-- Gallery Item 4 -->
+          <div
+            class="gallery-item aspect-square overflow-hidden rounded-xl glass p-2 transform transition-all duration-500 hover:scale-105 hover:shadow-2xl"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+              alt="Restaurant Technology - Digital Innovation and POS Systems"
+              class="w-full h-full object-cover rounded-lg"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <!-- Gallery Item 5 -->
+          <div
+            class="gallery-item aspect-square overflow-hidden rounded-xl glass p-2 transform transition-all duration-500 hover:scale-105 hover:shadow-2xl"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1484659619207-9165d119dafe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+              alt="Restaurant Customers - Happy Dining Experience"
+              class="w-full h-full object-cover rounded-lg"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <!-- Gallery Item 6 -->
+          <div
+            class="gallery-item md:col-span-2 aspect-video overflow-hidden rounded-xl glass p-2 transform transition-all duration-500 hover:scale-105 hover:shadow-2xl"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1498654896293-37aacf113fd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+              alt="Restaurant Exterior"
+              class="w-full h-full object-cover rounded-lg"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section
+      class="py-20 px-6 relative"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+        background-color: rgba(0, 0, 0, 0.7);
+      "
+    >
+      <div
+        class="max-w-4xl mx-auto text-center glass p-12 rounded-2xl border border-red-500/30 shadow-2xl transform hover:scale-[1.02] transition-transform duration-500"
+      >
+        <h2 class="text-3xl md:text-5xl font-bold mb-6">
+          Ready to <span class="gradient-text">Transform</span> Your Restaurant?
+        </h2>
+        <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+          Join hundreds of successful restaurants that have partnered with Tech
+          Talk Solution to streamline operations, enhance customer experience,
+          and drive growth.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="contact.html"
+            class="btn-primary px-8 py-4 rounded-lg text-white font-medium flex items-center gap-2 text-lg transform hover:scale-110 transition-transform duration-300 hover:shadow-lg"
+          >
+            <i class="fas fa-rocket"></i>
+            Get Started Today
+          </a>
+          <a
+            href="tel:+441234567890"
+            class="btn-outline px-8 py-4 rounded-lg text-white font-medium flex items-center gap-2 text-lg transform hover:scale-110 transition-transform duration-300 hover:shadow-lg"
+          >
+            <i class="fas fa-phone"></i>
+            Call Us Now
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section
+      class="py-20 px-6 relative"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+        background-color: rgba(0, 0, 0, 0.8);
+      "
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 glass p-8 rounded-xl">
+          <h2 class="text-3xl md:text-5xl font-bold mb-6">
+            Frequently <span class="gradient-text">Asked Questions</span>
+          </h2>
+          <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+            Find answers to common questions about our services and how we can
+            help your restaurant.
+          </p>
+        </div>
+
+        <div class="max-w-3xl mx-auto space-y-6">
+          <!-- FAQ Item 1 -->
+          <div
+            class="glass rounded-lg overflow-hidden border border-red-500/20 shadow-lg transform hover:scale-[1.01] transition-transform duration-300"
+          >
+            <button
+              class="w-full flex justify-between items-center p-6 text-left focus:outline-none"
+              id="faq-btn-1"
+              aria-expanded="false"
+              aria-controls="faq-content-1"
+            >
+              <span class="text-xl font-semibold"
+                >How quickly can you implement your services?</span
+              >
+              <i
+                class="fas fa-chevron-down transition-transform text-red-500"
+                id="faq-icon-1"
+              ></i>
+            </button>
+            <div
+              class="hidden p-6 pt-0 text-gray-300"
+              id="faq-content-1"
+              aria-labelledby="faq-btn-1"
+            >
+              <p>
+                Most of our services can be implemented within 1-2 weeks,
+                depending on the complexity of your requirements. Our team works
+                efficiently to ensure a smooth and quick transition with minimal
+                disruption to your restaurant operations.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div
+            class="glass rounded-lg overflow-hidden border border-red-500/20 shadow-lg transform hover:scale-[1.01] transition-transform duration-300"
+          >
+            <button
+              class="w-full flex justify-between items-center p-6 text-left focus:outline-none"
+              id="faq-btn-2"
+              aria-expanded="false"
+              aria-controls="faq-content-2"
+            >
+              <span class="text-xl font-semibold"
+                >Do you offer customized solutions?</span
+              >
+              <i
+                class="fas fa-chevron-down transition-transform text-red-500"
+                id="faq-icon-2"
+              ></i>
+            </button>
+            <div
+              class="hidden p-6 pt-0 text-gray-300"
+              id="faq-content-2"
+              aria-labelledby="faq-btn-2"
+            >
+              <p>
+                Yes, we understand that every restaurant is unique. We offer
+                fully customized solutions tailored to your specific needs,
+                goals, and budget. Our team works closely with you to develop a
+                strategy that addresses your particular challenges and
+                opportunities.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div
+            class="glass rounded-lg overflow-hidden border border-red-500/20 shadow-lg transform hover:scale-[1.01] transition-transform duration-300"
+          >
+            <button
+              class="w-full flex justify-between items-center p-6 text-left focus:outline-none"
+              id="faq-btn-3"
+              aria-expanded="false"
+              aria-controls="faq-content-3"
+            >
+              <span class="text-xl font-semibold"
+                >What makes your call answering service different?</span
+              >
+              <i
+                class="fas fa-chevron-down transition-transform text-red-500"
+                id="faq-icon-3"
+              ></i>
+            </button>
+            <div
+              class="hidden p-6 pt-0 text-gray-300"
+              id="faq-content-3"
+              aria-labelledby="faq-btn-3"
+            >
+              <p>
+                Our call answering service is specifically designed for
+                restaurants. Our team is trained in restaurant terminology, menu
+                knowledge, and reservation systems. We provide a seamless
+                experience for your customers, ensuring that every call is
+                handled professionally and efficiently, just as if they were
+                speaking directly to your staff.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div
+            class="glass rounded-lg overflow-hidden border border-red-500/20 shadow-lg transform hover:scale-[1.01] transition-transform duration-300"
+          >
+            <button
+              class="w-full flex justify-between items-center p-6 text-left focus:outline-none"
+              id="faq-btn-4"
+              aria-expanded="false"
+              aria-controls="faq-content-4"
+            >
+              <span class="text-xl font-semibold"
+                >Can you integrate with our existing systems?</span
+              >
+              <i
+                class="fas fa-chevron-down transition-transform text-red-500"
+                id="faq-icon-4"
+              ></i>
+            </button>
+            <div
+              class="hidden p-6 pt-0 text-gray-300"
+              id="faq-content-4"
+              aria-labelledby="faq-btn-4"
+            >
+              <p>
+                Yes, we specialize in seamless integration with your existing
+                systems, including EPOS, reservation platforms, and customer
+                management software. Our technical team ensures that all
+                integrations are smooth and efficient, minimizing any disruption
+                to your operations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="py-12 px-6"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+        background-color: rgba(0, 0, 0, 0.9);
+      "
+    >
+      <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8">
+        <div class="glass p-6 rounded-xl">
+          <div class="flex items-center space-x-2 mb-6">
+            <div
+              class="w-12 h-12 bg-gradient-to-r from-red-600 to-pink-400 rounded-lg flex items-center justify-center shadow-lg"
+            >
+              <i class="fas fa-utensils text-white text-xl"></i>
+            </div>
+            <span class="text-2xl font-bold">Tech Talk Solution</span>
+          </div>
+          <p class="text-gray-300 mb-6">
+            Premier restaurant support services provider in Blackburn, UK.
+          </p>
+          <div class="flex space-x-4">
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors hover:scale-125 transform duration-300 inline-block"
+            >
+              <i class="fab fa-facebook-f text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors hover:scale-125 transform duration-300 inline-block"
+            >
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors hover:scale-125 transform duration-300 inline-block"
+            >
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors hover:scale-125 transform duration-300 inline-block"
+            >
+              <i class="fab fa-linkedin-in text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="glass p-6 rounded-xl">
+          <h3 class="text-xl font-bold mb-6 border-b border-red-500/30 pb-2">
+            Quick Links
+          </h3>
+          <ul class="space-y-3">
+            <li>
+              <a
+                href="index.html"
+                class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 hover:translate-x-2 transform duration-300"
+                ><i class="fas fa-chevron-right text-red-500 text-xs"></i>
+                Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="about-us.html"
+                class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 hover:translate-x-2 transform duration-300"
+                ><i class="fas fa-chevron-right text-red-500 text-xs"></i> About
+                Us</a
+              >
+            </li>
+            <li>
+              <a
+                href="services.html"
+                class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 hover:translate-x-2 transform duration-300"
+                ><i class="fas fa-chevron-right text-red-500 text-xs"></i>
+                Services</a
+              >
+            </li>
+            <li>
+              <a
+                href="why-choose-us.html"
+                class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 hover:translate-x-2 transform duration-300"
+                ><i class="fas fa-chevron-right text-red-500 text-xs"></i> Why
+                Choose Us</a
+              >
+            </li>
+            <li>
+              <a
+                href="contact.html"
+                class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 hover:translate-x-2 transform duration-300"
+                ><i class="fas fa-chevron-right text-red-500 text-xs"></i>
+                Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="glass p-6 rounded-xl">
+          <h3 class="text-xl font-bold mb-6 border-b border-red-500/30 pb-2">
+            Services
+          </h3>
+          <ul class="space-y-3">
+            <li>
+              <a
+                href="services.html#call-answering"
+                class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 hover:translate-x-2 transform duration-300"
+                ><i class="fas fa-chevron-right text-red-500 text-xs"></i> Call
+                Answering</a
+              >
+            </li>
+            <li>
+              <a
+                href="services.html#email-marketing"
+                class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 hover:translate-x-2 transform duration-300"
+                ><i class="fas fa-chevron-right text-red-500 text-xs"></i> Email
+                Marketing</a
+              >
+            </li>
+            <li>
+              <a
+                href="services.html#customer-diversion"
+                class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 hover:translate-x-2 transform duration-300"
+                ><i class="fas fa-chevron-right text-red-500 text-xs"></i>
+                Customer Diversion</a
+              >
+            </li>
+            <li>
+              <a
+                href="services.html#social-media"
+                class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 hover:translate-x-2 transform duration-300"
+                ><i class="fas fa-chevron-right text-red-500 text-xs"></i>
+                Social Media Management</a
+              >
+            </li>
+            <li>
+              <a
+                href="services.html#epos-integration"
+                class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 hover:translate-x-2 transform duration-300"
+                ><i class="fas fa-chevron-right text-red-500 text-xs"></i> EPOS
+                Integration</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="glass p-6 rounded-xl">
+          <h3 class="text-xl font-bold mb-6 border-b border-red-500/30 pb-2">
+            Contact Us
+          </h3>
+          <ul class="space-y-4 text-gray-300">
+            <li
+              class="flex items-start space-x-3 hover:translate-x-2 transform duration-300"
+            >
+              <i class="fas fa-map-marker-alt mt-1 text-red-500"></i>
+              <span>123 Business Street, Blackburn, UK</span>
+            </li>
+            <li
+              class="flex items-start space-x-3 hover:translate-x-2 transform duration-300"
+            >
+              <i class="fas fa-phone mt-1 text-red-500"></i>
+              <span>+44 1234 567890</span>
+            </li>
+            <li
+              class="flex items-start space-x-3 hover:translate-x-2 transform duration-300"
+            >
+              <i class="fas fa-envelope mt-1 text-red-500"></i>
+              <span>info@techtalksolution.co.uk</span>
+            </li>
+            <li
+              class="flex items-start space-x-3 hover:translate-x-2 transform duration-300"
+            >
+              <i class="fas fa-clock mt-1 text-red-500"></i>
+              <span>Mon-Fri: 9:00 AM - 5:00 PM</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        class="max-w-7xl mx-auto mt-12 pt-8 border-t border-red-500/20 text-center text-gray-300 glass p-4 rounded-xl"
+      >
+        <p>&copy; 2023 Tech Talk Solution. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button
+      id="backToTop"
+      class="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-gradient-to-r from-red-600 to-pink-400 text-white flex items-center justify-center shadow-2xl z-50 transform hover:scale-110 transition-all duration-300 border-2 border-white/20"
+    >
+      <i class="fas fa-arrow-up text-lg"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script>
+      // Initialize particles background
+      document.addEventListener("DOMContentLoaded", function () {
+        // Particles background
+        tsParticles.load("particles-js", {
+          particles: {
+            number: {
+              value: 80,
+              density: {
+                enable: true,
+                value_area: 800,
+              },
+            },
+            color: {
+              value: "#DE232A",
+            },
+            shape: {
+              type: "circle",
+            },
+            opacity: {
+              value: 0.5,
+              random: true,
+            },
+            size: {
+              value: 3,
+              random: true,
+            },
+            line_linked: {
+              enable: true,
+              distance: 150,
+              color: "#F19FAC",
+              opacity: 0.4,
+              width: 1,
+            },
+            move: {
+              enable: true,
+              speed: 2,
+              direction: "none",
+              random: true,
+              straight: false,
+              out_mode: "out",
+              bounce: false,
+            },
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: {
+                enable: true,
+                mode: "grab",
+              },
+              onclick: {
+                enable: true,
+                mode: "push",
+              },
+              resize: true,
+            },
+          },
+          retina_detect: true,
+        });
+
+        // Initialize Lottie animations
+        lottie.loadAnimation({
+          container: document.getElementById("hero-lottie"),
+          renderer: "svg",
+          loop: true,
+          autoplay: true,
+          path: "https://assets10.lottiefiles.com/packages/lf20_rqfgj2lt.json", // Restaurant service animation
+        });
+
+        lottie.loadAnimation({
+          container: document.getElementById("benefit1-lottie"),
+          renderer: "svg",
+          loop: true,
+          autoplay: true,
+          path: "https://assets9.lottiefiles.com/packages/lf20_ysas4vcp.json", // Efficiency animation
+        });
+
+        lottie.loadAnimation({
+          container: document.getElementById("benefit2-lottie"),
+          renderer: "svg",
+          loop: true,
+          autoplay: true,
+          path: "https://assets7.lottiefiles.com/private_files/lf30_yxjrjpjo.json", // Customer service animation
+        });
+
+        lottie.loadAnimation({
+          container: document.getElementById("benefit3-lottie"),
+          renderer: "svg",
+          loop: true,
+          autoplay: true,
+          path: "https://assets10.lottiefiles.com/packages/lf20_ry2uhxny.json", // Growth animation
+        });
+
+        // Initialize ScrollReveal
+        const sr = ScrollReveal({
+          origin: "bottom",
+          distance: "60px",
+          duration: 1000,
+          delay: 200,
+          reset: false,
+        });
+
+        sr.reveal(".hero-title", { origin: "left" });
+        sr.reveal(".feature-card", { interval: 200 });
+        sr.reveal(".timeline-item", { interval: 300 });
+        sr.reveal(".testimonial-card", { interval: 200 });
+        sr.reveal(".gallery-item", { interval: 100 });
+        sr.reveal(".video-container", { origin: "top" });
+
+        // Initialize stat counters
+        const counterElements = document.querySelectorAll(".stat-counter");
+        const counterValues = [
+          { id: "stat1", start: 0, end: 98, suffix: "%" },
+          { id: "stat2", start: 0, end: 35, suffix: "%" },
+          { id: "stat3", start: 0, end: 200, suffix: "+" },
+          { id: "stat4", start: 0, end: 45, suffix: "%" },
+        ];
+
+        const animateCounter = (el, start, end, duration, suffix) => {
+          let startTimestamp = null;
+          const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min(
+              (timestamp - startTimestamp) / duration,
+              1
+            );
+            const value = Math.floor(progress * (end - start) + start);
+            el.innerHTML = value + suffix;
+            if (progress < 1) {
+              window.requestAnimationFrame(step);
+            }
+          };
+          window.requestAnimationFrame(step);
+        };
+
+        const handleIntersect = (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              counterValues.forEach((counter) => {
+                if (entry.target.id === counter.id) {
+                  animateCounter(
+                    entry.target,
+                    counter.start,
+                    counter.end,
+                    2000,
+                    counter.suffix
+                  );
+                }
+              });
+              observer.unobserve(entry.target);
+            }
+          });
+        };
+
+        const observer = new IntersectionObserver(handleIntersect, {
+          threshold: 0.5,
+        });
+
+        counterElements.forEach((el) => {
+          observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById("navbar");
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 50) {
+            navbar.classList.add("py-2");
+            navbar.classList.remove("py-4");
+          } else {
+            navbar.classList.add("py-4");
+            navbar.classList.remove("py-2");
+          }
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById("backToTop");
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 300) {
+            backToTopBtn.classList.add("show");
+          } else {
+            backToTopBtn.classList.remove("show");
+          }
+        });
+
+        backToTopBtn.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // FAQ accordion
+        const faqButtons = document.querySelectorAll("[id^='faq-btn-']");
+        faqButtons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const contentId = btn.getAttribute("aria-controls");
+            const content = document.getElementById(contentId);
+            const icon = document.getElementById(
+              `faq-icon-${contentId.split("-")[2]}`
+            );
+
+            content.classList.toggle("hidden");
+            btn.setAttribute(
+              "aria-expanded",
+              btn.getAttribute("aria-expanded") === "true" ? "false" : "true"
+            );
+            icon.classList.toggle("rotate-180");
+          });
+        });
+
+        // Initialize parallax effect
+        const parallaxScene = document.querySelector(".parallax-container");
+        if (parallaxScene) {
+          new Parallax(parallaxScene);
+        }
+
+        // Initialize Three.js background
+        const container = document.getElementById("three-container");
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(
+          75,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          1000
+        );
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 0);
+        container.appendChild(renderer.domElement);
+
+        // Create particles
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 1000;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for (let i = 0; i < particlesCount * 3; i++) {
+          posArray[i] = (Math.random() - 0.5) * 10;
+        }
+
+        particlesGeometry.setAttribute(
+          "position",
+          new THREE.BufferAttribute(posArray, 3)
+        );
+
+        const particlesMaterial = new THREE.PointsMaterial({
+          size: 0.01,
+          color: 0xde232a,
+          transparent: true,
+          opacity: 0.5,
+        });
+
+        const particlesMesh = new THREE.Points(
+          particlesGeometry,
+          particlesMaterial
+        );
+        scene.add(particlesMesh);
+
+        camera.position.z = 5;
+
+        // Animation loop
+        const animate = () => {
+          requestAnimationFrame(animate);
+          particlesMesh.rotation.y += 0.001;
+          renderer.render(scene, camera);
+        };
+
+        animate();
+
+        // Handle window resize
+        window.addEventListener("resize", () => {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+      });
+    </script>
+  </body>
+</html>

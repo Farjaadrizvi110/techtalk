@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Tech Talk Solution Services - Comprehensive restaurant support services including call answering, marketing, customer diversion, social media, and EPOS integration"
+    />
+    <meta
+      name="keywords"
+      content="restaurant support, call answering, email marketing, customer diversion, social media management, EPOS integration"
+    />
+    <meta name="author" content="Tech Talk Solution" />
+
+    <title>Our Services | Tech Talk Solution</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
+
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <!-- ScrollReveal -->
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+
+    <!-- Vanta.js -->
+    <!-- Vanta.js removed due to CDN loading issues - using CSS animations instead -->
+
+    <!-- Lottie -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
+    <!-- Shery.js -->
+    <!-- Shery.js removed due to CDN loading issues - using CSS animations instead -->
+
+    <!-- Parallax.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Custom styles -->
+    <style>
+      /* Color theme matching techtalksolution.co.uk */
+      :root {
+        --primary-dark: #0a0e27; /* A deep, rich blue-black for better contrast */
+        --accent-red: #de232a; /* The vibrant red from user */
+        --accent-pink: #f19fac; /* The soft pink from user */
+        --text-light: #f5f5f5;
+        --text-muted: #b0bec5;
+      }
+
+      body {
+        background-color: var(--primary-dark);
+        background-image: url("https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+        color: var(--text-light);
+      }
+
+      /* Custom animations */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .floating {
+        animation: float 4s ease-in-out infinite;
+      }
+
+      /* Gradient text */
+      .gradient-text {
+        background: linear-gradient(
+          90deg,
+          var(--accent-red),
+          var(--accent-pink)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Glassmorphism effect */
+      .glass {
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(222, 35, 42, 0.3);
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--primary-dark);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--accent-red);
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-pink);
+      }
+
+      /* Three.js canvas */
+      #three-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      /* Particles container */
+      #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      /* Service card */
+      .service-card {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      .service-image {
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+      }
+      
+      @media (min-width: 768px) {
+        .service-image {
+          height: 250px;
+        }
+      }
+
+      .service-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .service-card:hover .service-image img {
+        transform: scale(1.05);
+      }
+
+      .service-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .service-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to top,
+          rgba(10, 14, 39, 0.9),
+          rgba(10, 14, 39, 0.4)
+        );
+        display: flex;
+        align-items: flex-end;
+        padding: 20px;
+      }
+
+      /* Metric card */
+      .metric-card {
+        transition: all 0.3s ease;
+      }
+
+      .metric-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      /* Growth plan timeline */
+      .growth-timeline {
+        position: relative;
+        padding: 20px 0;
+      }
+
+      .growth-timeline::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 2px;
+        height: 100%;
+        background: var(--accent-blue);
+        transform: translateX(-50%);
+      }
+
+      .growth-item {
+        position: relative;
+        margin-bottom: 50px;
+        width: 50%;
+      }
+
+      .growth-item:nth-child(odd) {
+        left: 0;
+        padding-right: 40px;
+        text-align: right;
+      }
+
+      .growth-item:nth-child(even) {
+        left: 50%;
+        padding-left: 40px;
+      }
+
+      .growth-dot {
+        position: absolute;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--accent-red);
+        border: 4px solid var(--primary-dark);
+      }
+
+      .growth-item:nth-child(odd) .growth-dot {
+        right: -10px;
+      }
+
+      .growth-item:nth-child(even) .growth-dot {
+        left: -10px;
+      }
+
+      .growth-content {
+        background: var(--primary-blue);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Button styles */
+      .btn-primary {
+        background-color: var(--accent-blue);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--accent-red);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        border: 2px solid var(--accent-blue);
+        transition: all 0.3s ease;
+      }
+
+      .btn-outline:hover {
+        border-color: var(--accent-red);
+        background-color: rgba(229, 57, 53, 0.1);
+      }
+
+      /* Icon colors */
+      .icon-blue {
+        color: var(--accent-blue);
+      }
+
+      .icon-red {
+        color: var(--accent-red);
+      }
+
+      /* Back to top button */
+      #backToTop {
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      #backToTop.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Responsive timeline */
+      @media (max-width: 768px) {
+        .growth-timeline::before {
+          left: 20px;
+        }
+
+        .growth-item {
+          width: 100%;
+          padding-left: 50px !important;
+          padding-right: 0 !important;
+          text-align: left !important;
+        }
+
+        .growth-dot {
+          left: 10px !important;
+          right: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen overflow-x-hidden">
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Three.js Container -->
+    <div id="three-container"></div>
+
+    <!-- Main Background Image -->
+    <div
+      class="fixed inset-0 z-[-2] opacity-20"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        mix-blend-mode: overlay;
+      "
+    ></div>
+
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full z-50 glass py-3 md:py-4 px-4 md:px-6 transition-all duration-300"
+      id="navbar"
+    >
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <div
+            class="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-blue-600 to-red-600 rounded-lg flex items-center justify-center"
+          >
+            <i class="fas fa-utensils text-white text-sm md:text-base"></i>
+          </div>
+          <span class="text-lg md:text-xl font-bold text-white">Tech Talk Solution</span>
+        </div>
+
+        <div class="hidden md:flex space-x-6 lg:space-x-8">
+          <a
+            href="index.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Home</a
+          >
+          <a
+            href="about-us.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >About</a
+          >
+          <a
+            href="services.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Services</a
+          >
+          <a
+            href="why-choose-us.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Why Us</a
+          >
+          <a
+            href="Growth.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Growth Strategies
+          </a>
+          <a
+            href="contact.html"
+            class="nav-link text-white hover:text-red-400 transition-colors font-medium"
+            >Contact</a
+          >
+        </div>
+
+        <button class="md:hidden text-xl sm:text-2xl text-white p-2 sm:p-3 rounded-xl bg-black/20 shadow-lg hover:bg-black/30 transition-all duration-300 border border-red-500/30" id="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="hidden absolute top-full left-0 right-0 mt-2 mx-2 sm:mx-4 glass rounded-xl p-4 sm:p-6 shadow-2xl border border-red-500/30 z-50" id="mobile-menu">
+        <a href="index.html" class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >🏠 Home</a
+        >
+        <a
+          href="about-us.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >👥 About</a
+        >
+        <a
+          href="services.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >🛠️ Services</a
+        >
+        <a
+          href="why-choose-us.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >⭐ Why Us</a
+        >
+        <a
+          href="Growth.html"
+          class="block py-3 sm:py-4 px-2 sm:px-3 text-white hover:text-white hover:bg-red-600 transition-all duration-300 font-semibold rounded-lg mb-2 border border-transparent hover:border-red-600 text-sm sm:text-base"
+          >💬 Growth Strategies</a
+        >
+        <a
+          href="contact.html"
+          class="block py-3 px-2 sm:px-3 text-white hover:text-red-400 transition-colors font-medium text-sm sm:text-base"
+          >Contact</a
+        >
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="hero"
+      class="pt-32 pb-20 px-6 min-h-screen flex items-center relative"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1555992336-fb0d29498b13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=90');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+      "
+    >
+      <div class="absolute inset-0 bg-black bg-opacity-70 z-0"></div>
+      <div
+        class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center relative z-10"
+      >
+        <div
+          class="space-y-6 glass p-8 rounded-2xl border border-red-500/20 shadow-lg transform transition-all duration-300 hover:shadow-red-500/20 hover:scale-[1.02]"
+        >
+          <h1 class="text-4xl md:text-6xl font-bold hero-title">
+            Our <span class="gradient-text">Services</span>
+          </h1>
+          <p class="text-lg text-gray-300 max-w-lg hero-subtitle">
+            Comprehensive support solutions designed specifically for
+            restaurants to enhance operations and drive growth.
+          </p>
+
+          <div class="grid grid-cols-2 gap-3 md:gap-4 mt-6 md:mt-8">
+            <div
+              class="glass p-4 rounded-lg metric-card border border-blue-500/30 shadow-lg transform transition-all duration-300 hover:shadow-blue-500/30"
+            >
+              <div class="text-3xl font-bold gradient-text">95%</div>
+              <p class="text-gray-300">Cost Reduction</p>
+            </div>
+            <div
+              class="glass p-4 rounded-lg metric-card border border-red-500/30 shadow-lg transform transition-all duration-300 hover:shadow-red-500/30"
+            >
+              <div class="text-3xl font-bold gradient-text">24/7</div>
+              <p class="text-gray-300">Support Availability</p>
+            </div>
+            <div
+              class="glass p-4 rounded-lg metric-card border border-blue-500/30 shadow-lg transform transition-all duration-300 hover:shadow-blue-500/30"
+            >
+              <div class="text-3xl font-bold gradient-text">500+</div>
+              <p class="text-gray-300">Happy Clients</p>
+            </div>
+            <div
+              class="glass p-4 rounded-lg metric-card border border-red-500/30 shadow-lg transform transition-all duration-300 hover:shadow-red-500/30"
+            >
+              <div class="text-3xl font-bold gradient-text">4.8/5</div>
+              <p class="text-gray-300">Customer Rating</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="glass rounded-2xl p-1 overflow-hidden floating border border-red-500/30 shadow-lg transform transition-all duration-300 hover:shadow-red-500/30 hover:scale-[1.02] mt-4 md:mt-0"
+        >
+          <div class="relative h-64 md:h-96 overflow-hidden rounded-2xl">
+            <img
+              class="w-full h-full object-cover"
+              src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80"
+              alt="Restaurant Excellence - Premium Dining Experience and Service Quality"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="service-overlay">
+              <h3 class="text-2xl font-bold">Restaurant Excellence</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section
+      id="services"
+      class="py-20 px-6 relative"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1497215842964-222b430dc094?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=90');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+      "
+    >
+      <div class="absolute inset-0 bg-black bg-opacity-80 z-0"></div>
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center mb-8 md:mb-16 services-header glass p-4 md:p-8 rounded-2xl border border-red-500/20 shadow-lg inline-block mx-auto">
+          <h2 class="text-2xl md:text-3xl lg:text-5xl font-bold mb-2 md:mb-4 gradient-text">
+            Core Services
+          </h2>
+          <p class="text-gray-300 max-w-2xl mx-auto text-base md:text-lg">
+            Comprehensive support solutions designed specifically for
+            restaurants:
+          </p>
+        </div>
+
+        <div class="space-y-12 md:space-y-20 services-container">
+          <!-- Service 1 -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center service-item glass p-4 md:p-6 rounded-2xl border border-blue-500/30 shadow-lg transform transition-all duration-300 hover:shadow-blue-500/30 hover:scale-[1.01]"
+          >
+            <div
+              class="service-image rounded-2xl overflow-hidden border-2 border-red-500/30 shadow-lg"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=90"
+                alt="Call Answering Service - Professional Customer Support Solutions"
+                class="transform transition-all duration-500 hover:scale-110"
+                loading="lazy"
+                decoding="async"
+              />
+              <div
+                class="service-overlay bg-gradient-to-r from-blue-900/80 to-red-900/80"
+              >
+                <h3 class="text-2xl font-bold">Call Answering & Support</h3>
+              </div>
+            </div>
+
+            <div class="space-y-6">
+              <div
+                class="w-16 h-16 bg-gradient-to-r from-blue-600 to-red-600 rounded-lg flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110"
+              >
+                <i class="fas fa-phone-alt text-2xl text-white"></i>
+              </div>
+              <h3 class="text-3xl font-bold gradient-text">
+                Call Answering & Support
+              </h3>
+              <p class="text-gray-300 text-lg">
+                Never miss a customer call with our 24/7 professional call
+                handling service. Our team ensures every customer inquiry is
+                addressed promptly and professionally.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">24/7 professional call handling</span>
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">End-to-end order management</span>
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Personalized customer support</span>
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg"
+                    >Revenue loss prevention from missed calls</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Service 2 -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center service-item glass p-4 md:p-6 rounded-2xl border border-red-500/30 shadow-lg transform transition-all duration-300 hover:shadow-red-500/30 hover:scale-[1.01] mt-8 md:mt-12"
+          >
+            <div class="space-y-6 order-2 md:order-1">
+              <div
+                class="w-16 h-16 bg-gradient-to-r from-red-600 to-blue-600 rounded-lg flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110"
+              >
+                <i class="fas fa-envelope text-2xl text-white"></i>
+              </div>
+              <h3 class="text-3xl font-bold gradient-text">
+                Email & SMS Marketing
+              </h3>
+              <p class="text-gray-300 text-lg">
+                Engage your customers with targeted email and SMS campaigns. Our
+                marketing solutions integrate seamlessly with your EPOS system
+                for personalized promotions.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">EPOS data integration</span>
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Targeted promotional campaigns</span>
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg"
+                    >GDPR-compliant customer engagement</span
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div
+              class="service-image rounded-2xl overflow-hidden order-1 md:order-2 border-2 border-blue-500/30 shadow-lg"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=90"
+                alt="Email Marketing - Digital Communication and Customer Engagement"
+                class="transform transition-all duration-500 hover:scale-110"
+                loading="lazy"
+                decoding="async"
+              />
+              <div
+                class="service-overlay bg-gradient-to-r from-red-900/80 to-blue-900/80"
+              >
+                <h3 class="text-2xl font-bold">Email & SMS Marketing</h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service 3 -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center service-item glass p-4 md:p-6 rounded-2xl border border-blue-500/30 shadow-lg transform transition-all duration-300 hover:shadow-blue-500/30 hover:scale-[1.01] mt-8 md:mt-12"
+          >
+            <div
+              class="service-image rounded-2xl overflow-hidden border-2 border-red-500/30 shadow-lg"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=90"
+                alt="Customer Diversion Strategy - Strategic Business Planning and Analytics"
+                class="transform transition-all duration-500 hover:scale-110 w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+              <div
+                class="service-overlay bg-gradient-to-r from-blue-900/80 to-red-900/80"
+              >
+                <h3 class="text-2xl font-bold">Customer Diversion Strategy</h3>
+              </div>
+            </div>
+
+            <div class="space-y-6">
+              <div
+                class="w-16 h-16 bg-gradient-to-r from-blue-600 to-red-600 rounded-lg flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110"
+              >
+                <i class="fas fa-route text-2xl text-white"></i>
+              </div>
+              <h3 class="text-3xl font-bold gradient-text">
+                Customer Diversion Strategy
+              </h3>
+              <p class="text-gray-300 text-lg">
+                Reduce dependency on third-party platforms with our strategic
+                customer diversion approach. Direct customers to your own
+                channels for better margins.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg"
+                    >Reduces third-party platform dependency</span
+                  >
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Strategic customer redirection</span>
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Lower commission fees</span>
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Enhanced brand loyalty</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Service 4 -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center service-item glass p-4 md:p-6 rounded-2xl border border-red-500/30 shadow-lg transform transition-all duration-300 hover:shadow-red-500/30 hover:scale-[1.01] mt-8 md:mt-12"
+          >
+            <div class="space-y-6 order-2 md:order-1">
+              <div
+                class="w-16 h-16 bg-gradient-to-r from-red-600 to-blue-600 rounded-lg flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110"
+              >
+                <i class="fas fa-share-alt text-2xl text-white"></i>
+              </div>
+              <h3 class="text-3xl font-bold gradient-text">
+                Social Media Management
+              </h3>
+              <p class="text-gray-300 text-lg">
+                Build a strong online presence with our comprehensive social
+                media management. We create engaging content and manage all your
+                social platforms.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg"
+                    >Custom content creation & scheduling</span
+                  >
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Multi-platform management</span>
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Community engagement building</span>
+                </li>
+              </ul>
+            </div>
+
+            <div
+              class="service-image rounded-2xl overflow-hidden order-1 md:order-2 border-2 border-blue-500/30 shadow-lg"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1611926653458-09294b3142bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=90"
+                alt="Social Media Management - Digital Marketing and Brand Engagement"
+                class="transform transition-all duration-500 hover:scale-110"
+                loading="lazy"
+                decoding="async"
+              />
+              <div
+                class="service-overlay bg-gradient-to-r from-red-900/80 to-blue-900/80"
+              >
+                <h3 class="text-2xl font-bold">Social Media Management</h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service 5 -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center service-item glass p-4 md:p-6 rounded-2xl border border-blue-500/30 shadow-lg transform transition-all duration-300 hover:shadow-blue-500/30 hover:scale-[1.01] mt-8 md:mt-12"
+          >
+            <div
+              class="service-image rounded-2xl overflow-hidden border-2 border-red-500/30 shadow-lg"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=90"
+                alt="EPOS Integration"
+                class="transform transition-all duration-500 hover:scale-110"
+              />
+              <div
+                class="service-overlay bg-gradient-to-r from-blue-900/80 to-red-900/80"
+              >
+                <h3 class="text-2xl font-bold">EPOS & Website Integration</h3>
+              </div>
+            </div>
+
+            <div class="space-y-6">
+              <div
+                class="w-16 h-16 bg-gradient-to-r from-blue-600 to-red-600 rounded-lg flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110"
+              >
+                <i class="fas fa-plug text-2xl text-white"></i>
+              </div>
+              <h3 class="text-3xl font-bold gradient-text">
+                EPOS & Website Integration
+              </h3>
+              <p class="text-gray-300 text-lg">
+                Streamline your operations with seamless EPOS and website
+                integration. Real-time data synchronization ensures efficient
+                management.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Real-time inventory updates</span>
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Automated receipts & tracking</span>
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Enhanced digital visibility</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Strategic Growth Plan Section -->
+    <section
+      id="growth-plan"
+      class="py-20 px-6 relative"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=90');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+      "
+    >
+      <div class="absolute inset-0 bg-black bg-opacity-80 z-0"></div>
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div
+          class="text-center mb-16 growth-header glass p-8 rounded-2xl border border-red-500/20 shadow-lg inline-block mx-auto"
+        >
+          <h2 class="text-3xl md:text-5xl font-bold mb-4 gradient-text">
+            Strategic Growth Plan (2023-2024)
+          </h2>
+          <p class="text-gray-300 max-w-2xl mx-auto text-lg">
+            Our roadmap for innovation and expansion
+          </p>
+        </div>
+
+        <div class="growth-timeline">
+          <div class="growth-item">
+            <div
+              class="growth-dot bg-gradient-to-r from-blue-600 to-red-600 shadow-lg"
+            ></div>
+            <div
+              class="growth-content glass p-6 rounded-2xl border border-blue-500/30 shadow-lg transform transition-all duration-300 hover:shadow-blue-500/30 hover:scale-[1.02]"
+            >
+              <h3 class="text-2xl font-bold mb-3 gradient-text">
+                Q3 2023: Regional Expansion
+              </h3>
+              <ul class="text-gray-300 space-y-2">
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Focus on Manchester & Birmingham</span>
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Local support team establishment</span>
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Regional marketing initiatives</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="growth-item">
+            <div
+              class="growth-dot bg-gradient-to-r from-red-600 to-blue-600 shadow-lg"
+            ></div>
+            <div
+              class="growth-content glass p-6 rounded-2xl border border-red-500/30 shadow-lg transform transition-all duration-300 hover:shadow-red-500/30 hover:scale-[1.02]"
+            >
+              <h3 class="text-2xl font-bold mb-3 gradient-text">
+                Q4 2023: Platform Automation
+              </h3>
+              <ul class="text-gray-300 space-y-2">
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Enhanced EPOS + CRM integration</span>
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Automated order processing</span>
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Intelligent data analysis</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="growth-item">
+            <div
+              class="growth-dot bg-gradient-to-r from-blue-600 to-red-600 shadow-lg"
+            ></div>
+            <div
+              class="growth-content glass p-6 rounded-2xl border border-blue-500/30 shadow-lg transform transition-all duration-300 hover:shadow-blue-500/30 hover:scale-[1.02]"
+            >
+              <h3 class="text-2xl font-bold mb-3 gradient-text">
+                Q1 2024: AI Integration
+              </h3>
+              <ul class="text-gray-300 space-y-2">
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Smart chatbot implementation</span>
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Predictive customer analysis</span>
+                </li>
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-check-circle text-red-500 mt-1 mr-3 text-lg"
+                  ></i>
+                  <span class="text-lg">Sentiment analysis tools</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section
+      id="cta"
+      class="py-20 px-6 relative"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=90');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+      "
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-black/90 z-0"
+      ></div>
+      <div
+        class="max-w-4xl mx-auto glass rounded-2xl p-8 md:p-12 text-center relative z-10 border border-red-500/30 shadow-xl"
+      >
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+          Ready to Transform Your Restaurant?
+        </h2>
+        <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+          Join hundreds of restaurants that have already transformed their
+          operations with our support services.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="contact.html"
+            class="px-8 py-3 btn-primary rounded-lg font-medium inline-block transform transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-red-500/30"
+          >
+            Get Started Today
+          </a>
+          <a
+            href="about.html"
+            class="px-8 py-3 btn-outline rounded-lg font-medium inline-block transform transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/30"
+          >
+            Learn More About Us
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="py-10 px-6 border-t border-gray-800 relative"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1557682250-33bd709cbe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=90');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+      "
+    >
+      <div class="absolute inset-0 bg-black bg-opacity-80 z-0"></div>
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div
+            class="mb-6 md:mb-0 glass p-4 rounded-xl border border-blue-500/20 shadow-lg"
+          >
+            <div class="flex items-center space-x-2">
+              <div
+                class="w-8 h-8 bg-gradient-to-r from-blue-600 to-red-600 rounded-lg flex items-center justify-center transform transition-all duration-300 hover:scale-110"
+              >
+                <i class="fas fa-utensils text-white"></i>
+              </div>
+              <span class="text-xl font-bold">Tech Talk Solution</span>
+            </div>
+            <p class="text-gray-300 mt-2">Restaurant Support Services</p>
+          </div>
+
+          <div
+            class="flex space-x-6 glass p-4 rounded-xl border border-red-500/20 shadow-lg"
+          >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-red-500 transition-colors duration-300 transform hover:scale-125"
+            >
+              <i class="fab fa-facebook text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-red-500 transition-colors duration-300 transform hover:scale-125"
+            >
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-red-500 transition-colors duration-300 transform hover:scale-125"
+            >
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-red-500 transition-colors duration-300 transform hover:scale-125"
+            >
+              <i class="fab fa-linkedin text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="mt-10 text-center text-gray-300 text-sm glass inline-block px-6 py-3 rounded-xl mx-auto border border-red-500/20 shadow-lg"
+        >
+          <p>© 2023 Tech Talk Solution. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a
+      href="#top"
+      id="backToTop"
+      class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-blue-600 to-red-600 text-white rounded-full flex items-center justify-center shadow-xl z-50 hover:bg-blue-700 transition-all duration-300 transform hover:scale-110 border-2 border-white/30 hover:border-white/80"
+    >
+      <i class="fas fa-arrow-up text-xl"></i>
+    </a>
+
+    <script>
+      // Initialize tsParticles
+      tsParticles.load("particles-js", {
+        particles: {
+          number: {
+            value: 80,
+            density: {
+              enable: true,
+              value_area: 800,
+            },
+          },
+          color: {
+            value: "#3949ab",
+          },
+          shape: {
+            type: "circle",
+          },
+          opacity: {
+            value: 0.5,
+            random: true,
+          },
+          size: {
+            value: 3,
+            random: true,
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+          },
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "repulse",
+            },
+            onclick: {
+              enable: true,
+              mode: "push",
+            },
+            resize: true,
+          },
+        },
+        retina_detect: true,
+      });
+
+      // Initialize Three.js
+      let scene, camera, renderer, particles;
+
+      function initThree() {
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(
+          75,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          1000
+        );
+
+        renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document
+          .getElementById("three-container")
+          .appendChild(renderer.domElement);
+
+        // Create particles
+        const geometry = new THREE.BufferGeometry();
+        const vertices = [];
+
+        for (let i = 0; i < 500; i++) {
+          vertices.push(
+            Math.random() * 2000 - 1000,
+            Math.random() * 2000 - 1000,
+            Math.random() * 2000 - 1000
+          );
+        }
+
+        geometry.setAttribute(
+          "position",
+          new THREE.Float32BufferAttribute(vertices, 3)
+        );
+
+        const material = new THREE.PointsMaterial({
+          color: 0x3949ab,
+          size: 2,
+          transparent: true,
+          opacity: 0.8,
+        });
+
+        particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+
+        camera.position.z = 500;
+
+        animate();
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        particles.rotation.x += 0.001;
+        particles.rotation.y += 0.002;
+
+        renderer.render(scene, camera);
+      }
+
+      initThree();
+
+      // Initialize Vanta.js if available
+      if (typeof VANTA !== "undefined") {
+        VANTA.WAVES({
+          el: "#hero",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          scale: 1.0,
+          scaleMobile: 1.0,
+          color: 0x0a0e27,
+          shininess: 30.0,
+          waveHeight: 10.0,
+          waveSpeed: 0.75,
+          zoom: 0.75,
+        });
+      }
+
+      // Initialize ScrollReveal
+      ScrollReveal().reveal(".hero-title", {
+        delay: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".hero-subtitle", {
+        delay: 400,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".metric-card", {
+        interval: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".services-header", {
+        delay: 200,
+        distance: "50px",
+        origin: "top",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".service-item", {
+        interval: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".growth-header", {
+        delay: 200,
+        distance: "50px",
+        origin: "top",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal(".growth-item", {
+        interval: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      ScrollReveal().reveal("#cta", {
+        delay: 200,
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        easing: "ease-out",
+      });
+
+      // GSAP Animations
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Navbar animation on scroll
+      gsap.to("#navbar", {
+        scrollTrigger: {
+          trigger: "#hero",
+          start: "bottom top",
+          end: "bottom top",
+          toggleActions: "play none none reverse",
+        },
+        backgroundColor: "rgba(10, 14, 39, 0.9)",
+        duration: 0.3,
+      });
+
+      // Metric cards hover effect
+      const metricCards = document.querySelectorAll(".metric-card");
+      metricCards.forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          gsap.to(card, {
+            y: -10,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, {
+            y: 0,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+      });
+
+      // Service cards hover effect
+      const serviceItems = document.querySelectorAll(".service-item");
+      serviceItems.forEach((item) => {
+        const image = item.querySelector(".service-image");
+        const content = item.querySelector(".space-y-6");
+
+        item.addEventListener("mouseenter", () => {
+          gsap.to(image, {
+            scale: 1.02,
+            duration: 0.5,
+            ease: "power2.out",
+          });
+        });
+
+        item.addEventListener("mouseleave", () => {
+          gsap.to(image, {
+            scale: 1,
+            duration: 0.5,
+            ease: "power2.out",
+          });
+        });
+      });
+
+      // Growth timeline animation
+      const growthItems = document.querySelectorAll(".growth-item");
+      growthItems.forEach((item, index) => {
+        gsap.fromTo(
+          item,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: index * 0.2,
+            scrollTrigger: {
+              trigger: item,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      });
+
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        console.log("Mobile menu toggled");
+      });
+      
+      // Check if we're on a mobile device and ensure proper display
+      function checkMobileView() {
+        const desktopMenu = document.querySelector(".hidden.md\\:flex.space-x-8") || document.querySelector(".md\\:flex.space-x-8");
+        
+        if (window.innerWidth < 768) { // md breakpoint in Tailwind
+          // Make sure mobile button is visible
+          mobileMenuBtn.classList.remove("hidden");
+          
+          // Make sure desktop menu is hidden if it exists
+          if (desktopMenu) {
+            desktopMenu.classList.add("hidden");
+            desktopMenu.classList.remove("md:flex");
+          }
+        } else {
+          // Restore desktop classes when viewport is larger if element exists
+          if (desktopMenu) {
+            desktopMenu.classList.remove("hidden");
+            desktopMenu.classList.add("md:flex");
+          }
+          
+          // Hide mobile menu when switching back to desktop
+          mobileMenu.classList.add("hidden");
+        }
+      }
+      
+      // Run on page load
+      checkMobileView();
+      
+      // Run on window resize
+      window.addEventListener("resize", checkMobileView);
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 80,
+              behavior: "smooth",
+            });
+            // Close mobile menu if open
+            mobileMenu.classList.add("hidden");
+          }
+        });
+      });
+
+      // Back to top functionality
+      const backToTop = document.getElementById("backToTop");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      });
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Window resize handler for Three.js
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    </script>
+  </body>
+</html>
