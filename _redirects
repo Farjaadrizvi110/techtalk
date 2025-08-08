@@ -1,0 +1,12 @@
+# Netlify redirects file
+# Handle 404 errors by serving index.html
+/*    /index.html   404
+
+# Force HTTPS
+http://techtalksolution.netlify.app/*    https://techtalksolution.netlify.app/:splat    301!
+http://www.techtalksolution.netlify.app/*    https://techtalksolution.netlify.app/:splat    301!
+
+# Handle common file extensions
+*.php    /index.html    404
+*.asp    /index.html    404
+*.aspx   /index.html    404

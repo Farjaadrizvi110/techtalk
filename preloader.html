@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Talk Solution - Loading</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+
+        .preloader-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1920&h=1080&fit=crop&crop=center&q=80') center/cover no-repeat;
+            z-index: -1;
+        }
+
+        .preloader-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(60, 20, 20, 0.8), rgba(40, 15, 15, 0.9));
+            z-index: 1;
+        }
+
+        .slider-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            z-index: 10;
+        }
+
+        .slider-panel {
+            flex: 1;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a1a, #3c1414, #2a0f0f);
+            transform: translateY(-100%);
+            animation: slideDownVertical 0.8s ease-out forwards;
+            border-bottom: 1px solid rgba(139, 69, 19, 0.3);
+        }
+
+        .slider-panel {
+            animation-delay: 0s;
+        }
+
+        .slider-exit .slider-panel {
+            animation: slideUpVertical 0.4s ease-in forwards;
+            animation-delay: 0s;
+        }
+
+        .preloader-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 100;
+            opacity: 0;
+            animation: contentFadeIn 0.8s ease-out 1s forwards;
+            background: rgba(20, 20, 20, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .tech-logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 40px;
+            position: relative;
+            transform: translateY(50px);
+            animation: logoSlideUp 1s ease-out 1.5s forwards, logoFloat 3s ease-in-out 2.5s infinite;
+        }
+
+        .tech-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.4));
+            border-radius: 20px;
+            animation: logoGlow 2s ease-in-out infinite;
+        }
+
+        .loading-text {
+            color: #f5f5f5;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-shadow: 0 4px 20px rgba(139, 69, 19, 0.8), 0 0 30px rgba(205, 92, 92, 0.4);
+            letter-spacing: 2px;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: textSlideUp 0.6s ease-out 1.3s forwards, textGlow 2s ease-in-out 2s infinite alternate;
+        }
+
+        .progress-container {
+            width: 400px;
+            height: 8px;
+            background: linear-gradient(90deg, rgba(139, 69, 19, 0.2), rgba(160, 82, 45, 0.3));
+            border-radius: 20px;
+            margin: 0 auto 30px;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid rgba(139, 69, 19, 0.4);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: progressSlideUp 0.6s ease-out 1.5s forwards;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5), inset 0 2px 5px rgba(139, 69, 19, 0.2);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #8B4513, #CD5C5C, #A0522D);
+            border-radius: 20px;
+            width: 0%;
+            position: relative;
+            box-shadow: 0 0 20px rgba(139, 69, 19, 0.6), 0 0 40px rgba(205, 92, 92, 0.3);
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            animation: progressShine 2s ease-in-out infinite;
+        }
+
+        .loading-percentage {
+            color: #f5f5f5;
+            font-size: 22px;
+            font-weight: 700;
+            text-shadow: 0 4px 15px rgba(139, 69, 19, 0.8), 0 0 20px rgba(205, 92, 92, 0.4);
+            letter-spacing: 1px;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: percentageSlideUp 0.6s ease-out 1.7s forwards, percentageGlow 2s ease-in-out 2.5s infinite alternate;
+        }
+
+        .tech-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 50%;
+            animation: particleFloat 6s linear infinite;
+        }
+
+        .particle:nth-child(odd) {
+            animation-delay: -2s;
+            background: rgba(0,212,255,0.8);
+        }
+
+        .particle:nth-child(even) {
+            animation-delay: -4s;
+            background: rgba(255,255,255,0.4);
+        }
+
+        .tech-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: -2;
+        }
+
+        @keyframes slideDown {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes slideUpVertical {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); }
+        }
+
+        @keyframes contentFadeIn {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes logoSlideUp {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { filter: drop-shadow(0 15px 30px rgba(0,0,0,0.4)); }
+            50% { filter: drop-shadow(0 20px 40px rgba(0, 212, 255, 0.3)); }
+        }
+
+        @keyframes textSlideUp {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 4px 20px rgba(139, 69, 19, 0.8), 0 0 30px rgba(205, 92, 92, 0.4); }
+            50% { text-shadow: 0 4px 20px rgba(139, 69, 19, 0.8), 0 0 40px rgba(205, 92, 92, 0.8), 0 0 60px rgba(139, 69, 19, 0.4); }
+        }
+
+        @keyframes progressSlideUp {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes percentageSlideUp {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes percentageGlow {
+            0%, 100% { text-shadow: 0 4px 15px rgba(139, 69, 19, 0.8), 0 0 20px rgba(205, 92, 92, 0.4); }
+            50% { text-shadow: 0 4px 15px rgba(139, 69, 19, 0.8), 0 0 30px rgba(205, 92, 92, 0.8), 0 0 50px rgba(139, 69, 19, 0.4); }
+        }
+
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .fade-out {
+            animation: fadeOut 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .tech-logo {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 30px;
+            }
+            
+            .loading-text {
+                font-size: 28px;
+                margin-bottom: 30px;
+                letter-spacing: 1px;
+            }
+            
+            .progress-container {
+                width: 320px;
+                height: 6px;
+            }
+            
+            .loading-percentage {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tech-logo {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 25px;
+            }
+            
+            .loading-text {
+                font-size: 24px;
+                margin-bottom: 25px;
+                letter-spacing: 1px;
+            }
+            
+            .progress-container {
+                width: 280px;
+                height: 6px;
+            }
+            
+            .loading-percentage {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .tech-logo {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .loading-text {
+                font-size: 20px;
+            }
+            
+            .progress-container {
+                width: 240px;
+            }
+            
+            .loading-percentage {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HD Background -->
+    <div class="preloader-bg"></div>
+    
+    <!-- Slider Panel -->
+    <div class="slider-container" id="sliderContainer">
+        <div class="slider-panel"></div>
+    </div>
+    
+    <div class="tech-particles">
+        <!-- Particles will be generated by JavaScript -->
+    </div>
+    
+    <div class="preloader-container" id="preloader">
+        <div class="tech-logo">
+            <img src="https://images.unsplash.com/photo-1553484771-371a605b060b?w=600&h=600&fit=crop&crop=center&q=80" alt="Tech Talk Solution" id="techImage">
+        </div>
+        
+        <div class="loading-text">TECH TALK SOLUTION</div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <div class="loading-percentage" id="percentage">0%</div>
+    </div>
+
+    <script>
+        // Generate floating particles
+        function createParticles() {
+            const particleContainer = document.querySelector('.tech-particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                particleContainer.appendChild(particle);
+            }
+        }
+
+        // Progress animation
+        function animateProgress() {
+            let progress = 0;
+            const progressBar = document.getElementById('progressBar');
+            const percentage = document.getElementById('percentage');
+            
+            // Start progress after slider animation
+            setTimeout(() => {
+                const interval = setInterval(() => {
+                    progress += Math.random() * 2 + 0.5;
+                    if (progress > 100) progress = 100;
+                    
+                    progressBar.style.width = progress + '%';
+                    percentage.textContent = Math.floor(progress) + '%';
+                    
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            completeLoading();
+                        }, 1000);
+                    }
+                }, 50);
+            }, 800); // Wait for content to appear
+        }
+
+        // Complete loading and redirect
+        function completeLoading() {
+            const sliderContainer = document.getElementById('sliderContainer');
+            const preloader = document.getElementById('preloader');
+            
+            // Start slider exit animation
+            sliderContainer.classList.add('slider-exit');
+            preloader.style.opacity = '0';
+            preloader.style.transform = 'translate(-50%, -50%) scale(0.8)';
+            preloader.style.transition = 'all 0.8s ease-out';
+            
+            setTimeout(() => {
+                // Get the target page from URL parameter or default to index.html
+                const urlParams = new URLSearchParams(window.location.search);
+                const targetPage = urlParams.get('page') || 'index.html';
+                window.location.href = targetPage;
+            }, 1200);
+        }
+
+        // Initialize preloader
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            animateProgress();
+        });
+        
+        // Prevent page refresh during loading
+        window.addEventListener('beforeunload', (e) => {
+            e.preventDefault();
+            e.returnValue = '';
+        });
+
+        // Prevent right-click and key shortcuts during loading
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('keydown', e => {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

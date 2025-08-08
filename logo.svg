@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 700" width="500" height="700">
+  <!-- Orange geometric shapes -->
+  <polygon points="0,0 192,0 96,96 0,172" fill="#FF8C42"/>
+  <polygon points="96,346 192,346 192,442 96,442" fill="#FF8C42"/>
+  
+  <!-- Gray geometric shapes -->
+  <polygon points="192,0 500,0 500,172 384,172 384,269 500,269 500,346 192,346 192,269 308,269 308,172 192,172" fill="#4A4A4A"/>
+  
+  <!-- WiFi symbol in center -->
+  <g transform="translate(250,150)">
+    <!-- Outer arc -->
+    <path d="M -50,-20 A 70,70 0 0,1 50,-20" stroke="#4A4A4A" stroke-width="8" fill="none"/>
+    <!-- Middle arc -->
+    <path d="M -35,-10 A 50,50 0 0,1 35,-10" stroke="#4A4A4A" stroke-width="8" fill="none"/>
+    <!-- Inner arc -->
+    <path d="M -20,0 A 30,30 0 0,1 20,0" stroke="#4A4A4A" stroke-width="8" fill="none"/>
+    <!-- Center dot -->
+    <circle cx="0" cy="15" r="6" fill="#4A4A4A"/>
+  </g>
+  
+  <!-- TECH text -->
+  <g transform="translate(0,420)">
+    <rect x="40" y="0" width="60" height="15" fill="#4A4A4A"/>
+    <rect x="40" y="25" width="15" height="60" fill="#4A4A4A"/>
+    
+    <rect x="120" y="0" width="60" height="15" fill="#4A4A4A"/>
+    <rect x="120" y="25" width="60" height="15" fill="#4A4A4A"/>
+    <rect x="120" y="50" width="60" height="15" fill="#4A4A4A"/>
+    <rect x="120" y="70" width="15" height="15" fill="#4A4A4A"/>
+    
+    <rect x="200" y="0" width="60" height="15" fill="#4A4A4A"/>
+    <rect x="200" y="25" width="15" height="45" fill="#4A4A4A"/>
+    <rect x="200" y="70" width="60" height="15" fill="#4A4A4A"/>
+    
+    <rect x="280" y="0" width="15" height="85" fill="#4A4A4A"/>
+    <rect x="305" y="0" width="60" height="15" fill="#4A4A4A"/>
+    <rect x="305" y="35" width="45" height="15" fill="#4A4A4A"/>
+    <rect x="350" y="50" width="15" height="35" fill="#4A4A4A"/>
+    
+    <rect x="385" y="0" width="15" height="85" fill="#4A4A4A"/>
+    <rect x="410" y="0" width="15" height="85" fill="#4A4A4A"/>
+  </g>
+  
+  <!-- Orange banner background for TALK -->
+  <polygon points="0,490 500,490 460,650 40,650" fill="#FF8C42"/>
+  
+  <!-- TALK text in white -->
+  <g transform="translate(0,520)" fill="white">
+    <rect x="45" y="0" width="60" height="15"/>
+    <rect x="75" y="25" width="15" height="60"/>
+    
+    <rect x="125" y="0" width="15" height="85"/>
+    <rect x="150" y="70" width="45" height="15"/>
+    <rect x="180" y="35" width="15" height="35"/>
+    
+    <rect x="215" y="0" width="15" height="85"/>
+    <rect x="240" y="70" width="45" height="15"/>
+    
+    <rect x="305" y="0" width="15" height="85"/>
+    <rect x="330" y="0" width="15" height="85"/>
+    <rect x="330" y="35" width="30" height="15"/>
+    <rect x="345" y="50" width="15" height="20"/>
+  </g>
+  
+  <!-- SOLUTIONS text -->
+  <text x="250" y="690" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#4A4A4A">SOLUTIONS</text>
+</svg>
