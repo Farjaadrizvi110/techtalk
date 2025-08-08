@@ -24,7 +24,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1920&h=1080&fit=crop&crop=center&q=80') center/cover no-repeat;
+            background: linear-gradient(135deg, #1a1a1a, #3c1414, #2a0f0f);
             z-index: -1;
         }
 
@@ -376,7 +376,20 @@
     
     <div class="preloader-container" id="preloader">
         <div class="tech-logo">
-            <img src="https://images.unsplash.com/photo-1553484771-371a605b060b?w=600&h=600&fit=crop&crop=center&q=80" alt="Tech Talk Solution" id="techImage">
+            <img src="logo.svg" alt="Tech Talk Solution" id="techImage" onerror="this.style.display='none'; document.getElementById('fallbackLogo').style.display='flex';">
+            <div id="fallbackLogo" style="
+                display: none;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                border-radius: 20px;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 36px;
+                font-weight: bold;
+                text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            ">TTS</div>
         </div>
         
         <div class="loading-text">TECH TALK SOLUTION</div>

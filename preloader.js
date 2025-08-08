@@ -6,7 +6,7 @@
     
     // Configuration
     const PRELOADER_CONFIG = {
-        enabled: false, // Preloader completely disabled
+        enabled: true, // Preloader enabled for deployment
         minLoadTime: 2000, // Minimum loading time in milliseconds
         maxLoadTime: 4000,  // Maximum loading time in milliseconds
         preloaderUrl: 'preloader.html',
@@ -58,8 +58,9 @@
                 position: relative;
                 animation: logoFloat 3s ease-in-out infinite;
             ">
-                <img src="https://images.unsplash.com/photo-1553484771-371a605b060b?w=400&h=400&fit=crop&crop=center&q=80" 
+                <img src="logo.svg" 
                      alt="Tech Talk Solution" 
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
                      style="
                          width: 100%;
                          height: 100%;
@@ -67,6 +68,19 @@
                          filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
                          animation: logoRotate 4s linear infinite;
                      ">
+                <div style="
+                    display: none;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    border-radius: 15px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-size: 24px;
+                    font-weight: bold;
+                ">TTS</div>
             </div>
             <div style="
                 font-size: 24px;
